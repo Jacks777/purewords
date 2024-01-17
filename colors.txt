@@ -1,0 +1,3 @@
+Primary: #cfd8dc;
+Secondary: #546e7a;
+Third: #37474f;
