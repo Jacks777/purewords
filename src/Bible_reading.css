@@ -64,6 +64,14 @@
   color: var(--primary);
 }
 
+.bible_text_container_prayer {
+  font-size: var(--fontSizeBigger);
+  color: var(--primary);
+  font-style: italic;
+  text-align: center;
+  margin: 16px 0;
+}
+
 /* ACTIVE */
 
 .readpage_active_title {
@@ -91,5 +99,8 @@
   }
   .readpage_container_inner {
     width: 90%;
+  }
+  .readpage_container_books-list {
+    display: block;
   }
 }

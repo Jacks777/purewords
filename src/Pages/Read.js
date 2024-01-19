@@ -61,17 +61,19 @@ function BibleReader() {
         </div>
         {selectedBookContent && !selectedChapter && (
           <>
+            {" "}
+            <p
+              onClick={() => {
+                setSelectedBook("");
+                setSelectedBookContent(null);
+                setSelectedChapter(null);
+              }}
+              style={{ color: "red" }}
+            >
+              Back
+            </p>
             <p className="readpage_container_books-title">Choose a chapter</p>
             <div className="chapter-list">
-              <p
-                onClick={() => {
-                  setSelectedBook("");
-                  setSelectedBookContent(null);
-                  setSelectedChapter(null);
-                }}
-              >
-                Back
-              </p>
               {selectedBookContent.map((chapter, index) => (
                 <div key={index} className="chapter-container">
                   <p
@@ -87,18 +89,22 @@ function BibleReader() {
         )}
         {selectedBookContent && selectedChapter && (
           <>
+            <p
+              onClick={() => {
+                setSelectedChapter(null);
+              }}
+              style={{ color: "red" }}
+            >
+              Back
+            </p>
+            <p className="bible_text_container_prayer">
+              "In the name of the Father, and of the Son, and of the Holy
+              Spirit"
+            </p>
             <p className="readpage_container_books-title">
               {selectedBook}, {selectedChapter}
             </p>
 
-            <p
-              onClick={() => {
-                setSelectedBook("");
-                setSelectedBookContent(null);
-              }}
-            >
-              Back
-            </p>
             <div className="bible_text_container">
               {selectedBookContent
                 .find((chapter) => chapter.chapter === selectedChapter)
