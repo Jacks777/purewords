@@ -1,0 +1,95 @@
+/* Bible Reading Page */
+
+.readpage_container {
+  flex: 1;
+  width: 100%;
+  height: 90vh;
+}
+
+.readpage_container_inner {
+  margin-top: 5vw;
+  margin-inline: auto;
+  width: 85%;
+}
+
+.readpage_container_title {
+  font-size: var(--fontSizeTitle);
+  margin-bottom: 5vw;
+  color: var(--primary);
+}
+
+.readpage_container_books-title {
+  font-size: var(--fontSizeBigger);
+  margin-bottom: 2vw;
+  color: var(--primary);
+}
+
+.readpage_container_books-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;
+  font-size: var(--fontSizeNormal);
+  color: var(--primary);
+  justify-content: space-between;
+}
+
+.bible_text_common {
+  color: var(--primary);
+  transition: 0.3s all;
+  cursor: pointer;
+}
+
+.bible_text_common:hover {
+  color: black;
+}
+
+.bible_text_row {
+  display: flex;
+  gap: 10px;
+}
+
+.bible_text_verseNumber {
+  color: var(--primary);
+}
+
+.bible_text_row {
+  margin-bottom: 1vw;
+}
+
+.bible_text_container {
+  margin-bottom: 5vw;
+}
+
+.bible_text {
+  color: var(--primary);
+}
+
+/* ACTIVE */
+
+.readpage_active_title {
+  font-size: var(--fontSizeBigger);
+  color: var(--primary);
+}
+
+.readpage_container_bible_text {
+  font-size: var(--fontSizeNormal);
+  color: var(--primary);
+}
+.readpage_container_bible_chapters {
+  font-size: var(--fontSizeNormal);
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/* END ACTIVE */
+
+/* End Bible Reading Page2 */
+
+@media (max-width: 640px) {
+  .readpage_container {
+    padding-bottom: 20vw;
+  }
+  .readpage_container_inner {
+    width: 90%;
+  }
+}

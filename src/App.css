@@ -2,111 +2,809 @@
   --primary: #cfd8dc;
   --second: #546e7a;
   --third: #37474f;
+  --fontSizeTitle: calc(45px + 0.20625vw);
+  --fontSizeBiggest: calc(32px + 0.20625vw);
+  --fontSizeBigger: calc(25px + 0.20625vw);
+  --fontSizeNormal: calc(15px + 0.20625vw);
+  --fontSizeSmaller: calc(10px + 0.20625vw);
+  --fontSizeSmallest: calc(7px + 0.20625vw);
 }
 
 .main_app_container {
   width: 100vw;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
   min-height: 100dvh;
-  background-color: var(--primary);
 }
 
-.landingpage_container {
+/* HERO CONTAINER */
+.herosection_container {
+  flex: 1;
+}
+
+.hero_container {
   width: 100%;
-  height: 100%;
+  height: 70vh;
   display: flex;
   justify-content: center;
+}
+
+.hero_container_inner {
+  width: 85%;
+  height: 100%;
+  display: flex;
   align-items: center;
 }
 
-.landingpage_container_inner {
-  width: 70%;
-  height: 50%;
-  display: flex;
-  gap: 2vw;
-}
-
-.landingpage_container_inner-left,
-.landingpage_container_inner-right {
-  height: 100%;
-}
-
-.landingpage_container_inner-left {
+.hero_container_left {
   width: 60%;
-}
-
-.landingpage_container_inner-right {
-  width: 40%;
-}
-
-.landingpage_container_inner-left {
-  gap: 3vw;
   display: flex;
   flex-direction: column;
-}
-
-.bento_card {
-  background-color: var(--second);
-  border-radius: 24px;
-  width: 100%;
-  height: 100%;
-}
-
-.bento_left_top,
-.bento_left_bottom {
-  width: 100%;
-  height: 100%;
-}
-
-.bento_left_top {
-  display: flex;
   gap: 2vw;
 }
 
-/* .bento_grid_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+.hero_title-top,
+.hero_title2-top,
+.hero_title-bottom,
+.hero_title-info,
+.hero_title2-info {
+  font-size: var(--fontSizeTitle);
+  color: var(--primary);
 }
 
- .bento_grid_container_inner {
-  display: block;
-  position: relative;
-  width: 50%;
+.hero_title-info,
+.hero_title2-info {
+  font-size: var(--fontSizeNormal);
+}
+
+.hero_title-top,
+.hero_title-bottom {
+  font-size: var(--fontSizeTitle);
+}
+
+.hero_container_right {
+  width: 40%;
   height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-
-.bento_grid_container-card {
-  background-color: #f6f6f6;
-  border-radius: 24px;
-}
-
-.bento_grid_container-start,
-.bento_grid_container-end,
-.bento_grid_container-right {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 100%;
-  width: 100%;
+  align-items: end;
+  justify-content: center;
 }
 
-.card-start,
-.card-end {
+.bible_svg {
+  transform: translateY(-2vw);
+  width: 17vw;
+  transition: 0.3s all;
+}
+
+.hero_container-svgBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 17vw;
+  height: 17vw;
+  background-color: var(--third);
+  position: relative;
+}
+
+.hero_container-svgBox_text {
+  opacity: 0;
+  color: var(--primary);
+  position: absolute;
+  transition: 0.6s all;
+  padding: 1vw;
+}
+
+.hero_container-svgBox_text-verse {
+  font-size: var(--fontSizeNormal);
+  text-align: center;
+}
+.hero_container-svgBox_text-info {
+  font-size: var(--fontSizeSmaller);
+  text-align: right;
+  margin-top: 1.5vw;
+}
+
+.hero_container-svgBox::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  transform: translateX(0.5vw) translateY(0.5vw);
+  background-color: #cfd8dc2c;
+  width: 17vw;
+  height: 17vw;
+  transition: 0.6s all;
+}
+
+.hero_container-svgBox::before {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  transform: translateX(-4vw) translateY(-4vw);
+  background-color: #cfd8dc0e;
+  width: 17vw;
+  height: 17vw;
+  transition: 0.6s all;
+}
+
+.hero_container-svgBox:hover::before,
+.hero_container-svgBox:hover::after {
+  transform: translate(0px);
+}
+
+.hero_container-svgBox:hover::after {
+  width: 18vw;
+  height: 18vw;
+  border-radius: 3px;
+  animation: hero_container-svgBox 2s infinite;
+  animation-delay: 0.6s;
+}
+
+@keyframes hero_container-svgBox {
+  0%,
+  15% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.95);
+  }
+  45% {
+    transform: scale(1.01);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.hero_container-svgBox:hover .bible_svg {
+  transform: translate(0px);
+  opacity: 0;
+}
+
+.hero_container-svgBox:hover .hero_container-svgBox_text {
+  opacity: 1;
+}
+/* END OF HERO CONTAINER */
+
+/* HERO 2 CONTAINER */
+
+.hero_container2 {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+}
+
+.hero_container2_inner {
+  width: 85%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hero_container2_left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+}
+
+.hero_title2-top,
+.hero_title2-bottom,
+.hero_title2-info {
+  font-size: var(--fontSizeTitle);
+  color: var(--primary);
+}
+
+.hero_title2-info {
+  font-size: var(--fontSizeNormal);
+}
+
+.hero_title2-top,
+.hero_title2-bottom {
+  font-size: var(--fontSizeTitle);
+}
+
+.hero_container2_right {
+  width: 60%;
   height: 50%;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  text-align: right;
+  justify-content: center;
 }
 
-.card-right {
-  height: 100%;
-  width: 100%;
+.bible_svg {
+  transform: translateY(-2vw);
+  width: 17vw;
+  transition: 0.3s all;
 }
 
-.card-right:hover {
-  background-color: aliceblue;
-} */
+.hero_container2-svgBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 17vw;
+  height: 17vw;
+  background-color: var(--third);
+  position: relative;
+}
+
+.hero_container2-svgBox_text {
+  opacity: 0;
+  color: var(--primary);
+  position: absolute;
+  transition: 0.6s all;
+  padding: 1vw;
+}
+
+.hero_container2-svgBox_text-verse {
+  font-size: var(--fontSizeNormal);
+  text-align: center;
+}
+.hero_container2-svgBox_text-info {
+  font-size: var(--fontSizeSmaller);
+  text-align: right;
+  margin-top: 1.5vw;
+}
+
+.hero_container2-svgBox::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  transform: translateX(0.5vw) translateY(0.5vw);
+  background-color: #cfd8dc2c;
+  width: 17vw;
+  height: 17vw;
+  transition: 0.6s all;
+}
+
+.hero_container2-svgBox::before {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  transform: translateX(-4vw) translateY(-4vw);
+  background-color: #cfd8dc0e;
+  width: 17vw;
+  height: 17vw;
+  transition: 0.6s all;
+}
+
+.hero_container2-svgBox:hover::before,
+.hero_container2-svgBox:hover::after {
+  transform: translate(0px);
+}
+
+.hero_container2-svgBox:hover::after {
+  width: 18vw;
+  height: 18vw;
+  border-radius: 3px;
+  animation: hero_container2-svgBox 2s infinite;
+  animation-delay: 0.6s;
+}
+
+@keyframes hero_container2-svgBox {
+  0%,
+  15% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.95);
+  }
+  45% {
+    transform: scale(1.01);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.hero_container2-svgBox:hover .bible_svg {
+  transform: translate(0px);
+  opacity: 0;
+}
+
+.hero_container2-svgBox:hover .hero_container2-svgBox_text {
+  opacity: 1;
+}
+/* END OF HERO2 CONTAINER */
+
+/* NAV */
+nav {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--fontSizeSmaller) 0;
+  height: 3vw;
+  border-bottom: 1px solid var(--primary);
+  width: 90%;
+}
+
+.nav_title {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  text-decoration: none;
+}
+
+.title_text {
+  font-size: var(--fontSizeBigger);
+  color: var(--primary);
+}
+
+.pigeon_svg {
+  width: var(--fontSizeBigger);
+}
+
+.nav_navigation {
+  flex: 1;
+  justify-content: right;
+  display: flex;
+  gap: 1.5vw;
+  color: var(--primary);
+}
+
+.nav_navigation_links,
+.link-style {
+  color: var(--primary);
+  text-decoration: none;
+}
+/* END NAV */
+
+/* FOOTER MAIN PAGE */
+.footer_container {
+  width: 100%;
+  padding: 2vw 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--third);
+}
+
+.footer_container_links {
+  display: flex;
+  margin-top: 1vw;
+  gap: 1vw;
+}
+
+.footer_container_links a {
+  font-size: var(--fontSizeSmaller);
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footer_container_rights {
+  margin-top: 1vw;
+}
+
+.footer_container_rights p {
+  font-size: var(--fontSizeSmallest);
+  color: var(--primary);
+}
+
+/* END OF FOOTER MAIN PAGE */
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  /* NAV */
+  .nav_container {
+    width: 90%;
+    border: none;
+  }
+  nav {
+    height: 75px;
+  }
+  .title_text {
+    display: none;
+  }
+  .nav_container .nav_title .pigeon_svg {
+    width: 50px;
+  }
+  /* END NAV */
+  /* Hero containers */
+  .hero_container,
+  .hero_container2 {
+    height: 70vh;
+    margin-top: 50px;
+  }
+  .hero_container2 {
+    padding-bottom: 100px;
+  }
+  .hero_container_inner,
+  .hero_container2_inner {
+    flex-direction: column;
+    width: 90%;
+    justify-content: space-between;
+  }
+  .hero_container2_inner {
+    flex-direction: column-reverse;
+  }
+  .hero_container_left,
+  .hero_container2_left {
+    width: 100%;
+    gap: 12vw;
+  }
+  .hero_title-top {
+    font-size: var(--fontSizeBiggest);
+  }
+  .hero_title_top_intro {
+    font-size: var(--fontSizeTitle);
+    margin-bottom: 25px;
+  }
+  .hero_title-info {
+    display: none;
+  }
+  .hero_title2-top {
+    font-size: var(--fontSizeBiggest);
+  }
+  .hero_title2-info {
+    display: block;
+  }
+  .hero_container_right,
+  .hero_container2_right {
+    width: 100%;
+    justify-content: end;
+  }
+  /* SVG  ANIMATIONS */
+  .hero_container-svgBox,
+  .hero_container2-svgBox {
+    height: 200px;
+    width: 200px;
+  }
+  .hero_container-svgBox::before,
+  .hero_container2-svgBox::before {
+    width: 200px;
+    height: 200px;
+    transform: translateX(-5vw) translateY(-5vw);
+  }
+  .hero_container2-svgBox::before {
+    transform: translateX(5vw) translateY(-5vw);
+  }
+  .bible_svg {
+    width: 160px;
+    transform: translateY(-10vw);
+  }
+  .hero_container-svgBox::after,
+  .hero_container2-svgBox::after {
+    transform: translateX(3vw) translateY(3vw);
+    width: 200px;
+    height: 200px;
+  }
+  .hero_container2-svgBox::after {
+    transform: translateX(-3vw) translateY(3vw);
+  }
+  .hero_container-svgBox:hover::after,
+  .hero_container2-svgBox:hover::after {
+    width: 210px;
+    height: 210px;
+  }
+  .hero_container-svgBox_text,
+  .hero_container2-svgBox_text {
+    padding: 10px;
+  }
+  /* END HERO CONTAINER */
+  /* FOOTER */
+  .footer_container_start .nav_title .pigeon_svg {
+    display: none;
+  }
+  .footer_container_start .nav_title .title_text {
+    display: block;
+  }
+  .footer_container_links a {
+    font-size: var(--fontSizeNormal);
+  }
+  .footer_container_rights p {
+    font-size: var(--fontSizeSmaller);
+  }
+  /* END FOOTER */
+}
+@media (min-width: 640px) {
+  /* NAV */
+
+  /* END NAV */
+  /* Hero containers */
+  .hero_container,
+  .hero_container2 {
+    height: 70vh;
+    margin-top: 50px;
+  }
+  .hero_container2 {
+    padding-bottom: 100px;
+  }
+  .hero_container_inner,
+  .hero_container2_inner {
+    width: 90%;
+    justify-content: space-between;
+  }
+  .hero_container_left,
+  .hero_container2_left {
+    width: 100%;
+    gap: 12vw;
+  }
+  .hero_title-top {
+    font-size: var(--fontSizeBiggest);
+  }
+  .hero_title_top_intro {
+    font-size: var(--fontSizeTitle);
+    margin-bottom: 25px;
+  }
+  .hero_title-info,
+  .hero_title2-info {
+    display: none;
+  }
+
+  .hero_title2-top {
+    font-size: var(--fontSizeBiggest);
+  }
+  .hero_container_right,
+  .hero_container2_right {
+    width: 100%;
+  }
+  /* SVG  ANIMATIONS */
+  .hero_container-svgBox,
+  .hero_container2-svgBox {
+    height: 200px;
+    width: 200px;
+  }
+  .hero_container-svgBox::before,
+  .hero_container2-svgBox::before {
+    width: 200px;
+    height: 200px;
+    transform: translateX(-5vw) translateY(-5vw);
+  }
+  .hero_container2-svgBox::before {
+    transform: translateX(5vw) translateY(-5vw);
+  }
+  .bible_svg {
+    width: 160px;
+    transform: translateY(-10vw);
+  }
+  .hero_container-svgBox::after,
+  .hero_container2-svgBox::after {
+    transform: translateX(3vw) translateY(3vw);
+    width: 200px;
+    height: 200px;
+  }
+  .hero_container2-svgBox::after {
+    transform: translateX(-3vw) translateY(3vw);
+  }
+  .hero_container-svgBox:hover::after,
+  .hero_container2-svgBox:hover::after {
+    width: 210px;
+    height: 210px;
+  }
+  .hero_container-svgBox_text,
+  .hero_container2-svgBox_text {
+    padding: 10px;
+  }
+  /* END HERO CONTAINER */
+  /* FOOTER */
+  .footer_container_start .nav_title .pigeon_svg {
+    display: none;
+  }
+  .footer_container_start .nav_title .title_text {
+    display: block;
+  }
+  .footer_container_links a {
+    font-size: var(--fontSizeNormal);
+  }
+  .footer_container_rights p {
+    font-size: var(--fontSizeSmaller);
+  }
+}
+@media (min-width: 768px) {
+  /* NAV */
+
+  /* END NAV */
+  /* Hero containers */
+  .hero_container,
+  .hero_container2 {
+    height: 70vh;
+    margin-top: 50px;
+  }
+  .hero_container2 {
+    padding-bottom: 100px;
+  }
+  .hero_container_inner,
+  .hero_container2_inner {
+    width: 90%;
+    justify-content: space-between;
+  }
+  .hero_container_left,
+  .hero_container2_left {
+    width: 100%;
+    gap: 12vw;
+  }
+  .hero_title-top {
+    font-size: var(--fontSizeBiggest);
+  }
+  .hero_title_top_intro {
+    font-size: var(--fontSizeTitle);
+    margin-bottom: 25px;
+  }
+  .hero_title-info,
+  .hero_title2-info {
+    display: none;
+  }
+  .hero_title2-info {
+    display: block;
+  }
+  .hero_title2-top {
+    font-size: var(--fontSizeBiggest);
+  }
+  .hero_container_right,
+  .hero_container2_right {
+    width: 100%;
+  }
+  /* SVG  ANIMATIONS */
+  .hero_container-svgBox,
+  .hero_container2-svgBox {
+    height: 200px;
+    width: 200px;
+  }
+  .hero_container-svgBox::before,
+  .hero_container2-svgBox::before {
+    width: 200px;
+    height: 200px;
+    transform: translateX(-5vw) translateY(-5vw);
+  }
+  .hero_container2-svgBox::before {
+    transform: translateX(5vw) translateY(-5vw);
+  }
+  .bible_svg {
+    width: 160px;
+    transform: translateY(-10vw);
+  }
+  .hero_container-svgBox::after,
+  .hero_container2-svgBox::after {
+    transform: translateX(3vw) translateY(3vw);
+    width: 200px;
+    height: 200px;
+  }
+  .hero_container2-svgBox::after {
+    transform: translateX(-3vw) translateY(3vw);
+  }
+  .hero_container-svgBox:hover::after,
+  .hero_container2-svgBox:hover::after {
+    width: 210px;
+    height: 210px;
+  }
+  .hero_container-svgBox_text,
+  .hero_container2-svgBox_text {
+    padding: 10px;
+  }
+  /* END HERO CONTAINER */
+  /* FOOTER */
+  .footer_container_start .nav_title .pigeon_svg {
+    display: none;
+  }
+  .footer_container_start .nav_title .title_text {
+    display: block;
+  }
+  .footer_container_links a {
+    font-size: var(--fontSizeNormal);
+  }
+  .footer_container_rights p {
+    font-size: var(--fontSizeSmaller);
+  }
+}
+@media (min-width: 1024px) {
+  /* NAV */
+
+  /* END NAV */
+  /* Hero containers */
+  .hero_container,
+  .hero_container2 {
+    height: 70vh;
+    margin-top: 50px;
+  }
+  .hero_container2 {
+    padding-bottom: 100px;
+  }
+  .hero_container_inner,
+  .hero_container2_inner {
+    width: 90%;
+    justify-content: space-between;
+  }
+  .hero_container_left,
+  .hero_container2_left {
+    width: 100%;
+    gap: 12vw;
+  }
+  .hero_title-top {
+    font-size: var(--fontSizeBiggest);
+  }
+  .hero_title_top_intro {
+    font-size: var(--fontSizeTitle);
+    margin-bottom: 25px;
+  }
+  .hero_title-info,
+  .hero_title2-info {
+    display: none;
+  }
+  .hero_title2-info {
+    display: block;
+  }
+  .hero_title2-top {
+    font-size: var(--fontSizeBiggest);
+  }
+  .hero_container_right,
+  .hero_container2_right {
+    width: 100%;
+  }
+  /* SVG  ANIMATIONS */
+  .hero_container-svgBox,
+  .hero_container2-svgBox {
+    height: 225px;
+    width: 225px;
+  }
+  .hero_container-svgBox::before,
+  .hero_container2-svgBox::before {
+    width: 225px;
+    height: 225px;
+    transform: translateX(-35px) translateY(-35px);
+  }
+  .hero_container2-svgBox::before {
+    transform: translateX(35px) translateY(-35px);
+  }
+  .bible_svg {
+    width: 160px;
+    transform: translateY(-50px);
+  }
+  .hero_container-svgBox::after,
+  .hero_container2-svgBox::after {
+    transform: translateX(10px) translateY(10px);
+    width: 225px;
+    height: 225px;
+  }
+  .hero_container2-svgBox::after {
+    transform: translateX(-10px) translateY(10px);
+  }
+  .hero_container-svgBox:hover::after,
+  .hero_container2-svgBox:hover::after {
+    width: 235px;
+    height: 235px;
+  }
+  .hero_container-svgBox_text,
+  .hero_container2-svgBox_text {
+    padding: 10px;
+  }
+  /* END HERO CONTAINER */
+  /* FOOTER */
+  .footer_container_start .nav_title .pigeon_svg {
+    display: block;
+  }
+  .footer_container_start .nav_title .title_text {
+    display: block;
+  }
+  .footer_container_links a {
+    font-size: var(--fontSizeNormal);
+  }
+  .footer_container_rights p {
+    font-size: var(--fontSizeSmaller);
+  }
+}

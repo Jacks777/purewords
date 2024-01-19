@@ -1,4 +1,39 @@
+:root {
+  --primary: #cfd8dc;
+  --second: #546e7a;
+  --third: #37474f;
+  --fontSizeTitle: calc(45px + 0.20625vw);
+  --fontSizeBiggest: calc(32px + 0.20625vw);
+  --fontSizeBigger: calc(25px + 0.20625vw);
+  --fontSizeNormal: calc(15px + 0.20625vw);
+  --fontSizeSmaller: calc(10px + 0.20625vw);
+  --fontSizeSmallest: calc(7px + 0.20625vw);
+}
+
 * {
   margin: 0;
   padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+
+body {
+  font-size: calc(15px + 0.390625vw);
+  background: rgb(84, 110, 122);
+  background: -moz-linear-gradient(
+    331deg,
+    rgba(84, 110, 122, 1) 0%,
+    rgba(55, 71, 79, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    331deg,
+    rgba(84, 110, 122, 1) 0%,
+    rgba(55, 71, 79, 1) 100%
+  );
+  background: linear-gradient(
+    331deg,
+    rgba(84, 110, 122, 1) 0%,
+    rgba(55, 71, 79, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#546e7a",endColorstr="#37474f",GradientType=1);
 }
