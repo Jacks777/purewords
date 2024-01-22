@@ -1,11 +1,13 @@
 :root {
   --primary: #cfd8dc;
+  --primaryHalf: #cfd8dc3a;
   --second: #546e7a;
   --third: #37474f;
   --fontSizeTitle: calc(45px + 0.20625vw);
   --fontSizeBiggest: calc(32px + 0.20625vw);
   --fontSizeBigger: calc(25px + 0.20625vw);
   --fontSizeNormal: calc(15px + 0.20625vw);
+  --fontSizeSmall: calc(12px + 0.20625vw);
   --fontSizeSmaller: calc(10px + 0.20625vw);
   --fontSizeSmallest: calc(7px + 0.20625vw);
 }
@@ -14,7 +16,7 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  min-height: 100vh;
 }
 
 /* HERO CONTAINER */
@@ -519,7 +521,7 @@ nav {
     display: block;
   }
   .footer_container_links a {
-    font-size: var(--fontSizeNormal);
+    font-size: var(--fontSizeSmall);
   }
   .footer_container_rights p {
     font-size: var(--fontSizeSmaller);
