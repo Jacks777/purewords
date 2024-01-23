@@ -4,7 +4,7 @@ import { Footer } from "../Components/Footer";
 
 import bibleChaptersJSON from "../bible-master/Books.json";
 import bibleData from "../bible-master/Obadiah.json";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LoadingComp from "../Components/LoadingComp";
 
 const Read = () => {
@@ -135,7 +135,6 @@ function BibleReader() {
             {/* CHOOSE A BOOK */}
             {!selectedBook && (
               <>
-                <p className="readpage_container_books-title">Choose a book</p>
                 <div className="readpage_container_books-list">
                   {bibleChaptersJSON.map((bookName, index) => {
                     const formattedName = bookName
@@ -240,14 +239,14 @@ function BibleReader() {
                       <p className="bible_text" key={verse.verse}>
                         {verse.text}
                       </p>
-                      <img
+                      {/* <img
                         src="/assets/copy.svg"
                         className={`bible_text_copy ${
                           isCopied === verse.verse ? "scaleUp" : ""
                         }`}
                         onClick={() => handleCopy(verse, selectedBook)}
-                        alt="copy svg"
-                      />
+                        alt="copy svg" build
+                      /> */}
                     </div>
                   ))}
               </div>

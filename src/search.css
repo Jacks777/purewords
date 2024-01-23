@@ -19,7 +19,10 @@
   border: 1px solid var(--third);
   border-radius: 12px 0px 0px 12px;
   padding: 8px 4px;
+  background-color: var(--primary);
+  color: var(--third);
 }
+
 .searchBar_container_submit {
   display: flex;
   justify-content: center;
@@ -30,6 +33,14 @@
   font-size: var(--fontSizeNormal);
   color: var(--primary);
   cursor: pointer;
+  transition: 0.3s all;
+  border: 1px solid var(--third);
+  border-left: 0;
+}
+
+.searchBar_container_submit:hover {
+  color: var(--third);
+  background-color: var(--primary);
 }
 
 .searchresult_container {
@@ -67,4 +78,10 @@
 
 .searchresult_container_chapter {
   width: 100%;
+}
+
+@media (max-width: 640px) {
+  .searchBar_container {
+    width: 90%;
+  }
 }
