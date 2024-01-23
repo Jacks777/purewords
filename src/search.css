@@ -10,6 +10,7 @@
   width: 75%;
   display: flex;
   padding-bottom: 50px;
+  transition: 0.3s all;
 }
 .searchBar_container_input {
   flex: 1;
@@ -62,4 +63,8 @@
 
 .searchresult_container_box h3 {
   font-size: var(--fontSizeBigger);
+}
+
+.searchresult_container_chapter {
+  width: 100%;
 }

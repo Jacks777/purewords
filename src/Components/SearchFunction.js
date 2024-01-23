@@ -126,7 +126,7 @@ function SearchResult({ book }) {
   return (
     <div className="searchresult_container" key={book.book}>
       {book.chapters.map((chapter) => (
-        <div key={chapter.chapter}>
+        <div className="searchresult_container_chapter" key={chapter.chapter}>
           <h3>{`${book.book} ${chapter.chapter}`}</h3>
           {chapter.verses.map((verse) => (
             <div className="searchresult_container_box" key={verse.verse}>
