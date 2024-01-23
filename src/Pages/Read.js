@@ -175,20 +175,24 @@ function BibleReader() {
 
           {selectedBookContent && selectedChapter && (
             <>
-              <div className="next_svg_container" onClick={handleNextChapter}>
-                <img
-                  className="next_svg"
-                  src="/assets/next.svg"
-                  alt="next button"
-                />
-              </div>
-              <div className="back_svg_container" onClick={handleBackChapter}>
-                <img
-                  className="back_svg"
-                  src="/assets/back.svg"
-                  alt="back button"
-                />
-              </div>
+              {
+                <div className="next_svg_container" onClick={handleNextChapter}>
+                  <img
+                    className="next_svg"
+                    src="/assets/next.svg"
+                    alt="next button"
+                  />
+                </div>
+              }
+              {
+                <div className="back_svg_container" onClick={handleBackChapter}>
+                  <img
+                    className="back_svg"
+                    src="/assets/back.svg"
+                    alt="back button"
+                  />
+                </div>
+              }
               <p
                 onClick={() => {
                   setSelectedChapter(null);
