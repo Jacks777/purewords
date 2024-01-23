@@ -1,22 +1,9 @@
-:root {
-  --primary: #cfd8dc;
-  --primaryHalf: #cfd8dc3a;
-  --second: #546e7a;
-  --third: #37474f;
-  --fontSizeTitle: calc(45px + 0.20625vw);
-  --fontSizeBiggest: calc(32px + 0.20625vw);
-  --fontSizeBigger: calc(25px + 0.20625vw);
-  --fontSizeNormal: calc(15px + 0.20625vw);
-  --fontSizeSmall: calc(12px + 0.20625vw);
-  --fontSizeSmaller: calc(10px + 0.20625vw);
-  --fontSizeSmallest: calc(7px + 0.20625vw);
-}
-
 .main_app_container {
   width: 100vw;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* HERO CONTAINER */
@@ -51,7 +38,7 @@
 .hero_title-info,
 .hero_title2-info {
   font-size: var(--fontSizeTitle);
-  color: var(--primary);
+  color: var(--third);
 }
 
 .hero_title-info,
@@ -113,7 +100,7 @@
   z-index: -1;
   content: "";
   transform: translateX(0.5vw) translateY(0.5vw);
-  background-color: #cfd8dc2c;
+  background-color: #37474f4f;
   width: 17vw;
   height: 17vw;
   transition: 0.6s all;
@@ -124,7 +111,7 @@
   z-index: -1;
   content: "";
   transform: translateX(-4vw) translateY(-4vw);
-  background-color: #cfd8dc0e;
+  background-color: #37474f27;
   width: 17vw;
   height: 17vw;
   transition: 0.6s all;
@@ -202,7 +189,7 @@
 .hero_title2-bottom,
 .hero_title2-info {
   font-size: var(--fontSizeTitle);
-  color: var(--primary);
+  color: var(--third);
 }
 
 .hero_title2-info {
@@ -264,7 +251,7 @@
   z-index: -1;
   content: "";
   transform: translateX(0.5vw) translateY(0.5vw);
-  background-color: #cfd8dc2c;
+  background-color: #37474f4f;
   width: 17vw;
   height: 17vw;
   transition: 0.6s all;
@@ -275,7 +262,7 @@
   z-index: -1;
   content: "";
   transform: translateX(-4vw) translateY(-4vw);
-  background-color: #cfd8dc0e;
+  background-color: #37474f27;
   width: 17vw;
   height: 17vw;
   transition: 0.6s all;
@@ -340,7 +327,7 @@ nav {
   align-items: center;
   padding: var(--fontSizeSmaller) 0;
   height: 3vw;
-  border-bottom: 1px solid var(--primary);
+  border-bottom: 1px solid var(--third);
   width: 90%;
 }
 
@@ -365,14 +352,19 @@ nav {
   justify-content: right;
   display: flex;
   gap: 1.5vw;
-  color: var(--primary);
+  color: var(--third);
 }
 
 .nav_navigation_links,
 .link-style {
-  color: var(--primary);
+  color: var(--third);
   text-decoration: none;
 }
+
+.title_text_dark {
+  color: var(--third) !important;
+}
+
 /* END NAV */
 
 /* FOOTER MAIN PAGE */

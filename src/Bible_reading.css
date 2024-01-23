@@ -3,7 +3,6 @@
 .readpage_container {
   flex: 1;
   width: 100%;
-  height: 90vh;
   padding-bottom: 50px;
 }
 
@@ -16,13 +15,13 @@
 .readpage_container_title {
   font-size: var(--fontSizeTitle);
   margin-bottom: 5vw;
-  color: var(--primary);
+  color: var(third);
 }
 
 .readpage_container_books-title {
   font-size: var(--fontSizeBigger);
   margin-bottom: 50px;
-  color: var(--primary);
+  color: var(third);
 }
 
 .readpage_container_books-list {
@@ -30,12 +29,12 @@
   flex-direction: column;
   gap: 20px;
   font-size: var(--fontSizeNormal);
-  color: var(--primary);
+  color: var(third);
   justify-content: flex-start;
 }
 
 .bible_text_common {
-  color: var(--primary);
+  color: var(third);
   font-size: var(--fontSizeNormal);
   transition: 0.3s all;
   cursor: pointer;
@@ -56,7 +55,7 @@
 
 .iconBookInfo p {
   font-size: var(--fontSizeBigger);
-  color: var(--primary);
+  color: var(third);
   font-style: italic;
 }
 
@@ -65,7 +64,7 @@
 }
 
 .chapter-container {
-  color: var(--primary);
+  color: var(third);
   font-size: var(--fontSizeNormal);
   transition: 0.3s all;
   cursor: pointer;
@@ -74,36 +73,44 @@
 }
 
 .chapter-container:hover {
-  background-color: var(--primaryHalf);
+  background-color: var(--secondHalf);
 }
 
 .bible_text_common_box:hover {
-  background-color: var(--primaryHalf);
+  background-color: var(--secondHalf);
 }
 
 .back_button_global {
   font-size: var(--fontSizeNormal);
-  color: var(--primaryHalf);
+  color: var(--secondHalf);
   cursor: pointer;
   transition: 0.3s all;
   margin-bottom: 25px;
 }
 
 .back_button_global:hover {
-  color: var(--primary);
+  color: var(third);
 }
 
 .bible_text_row {
   display: flex;
+  margin-bottom: 3vw;
 }
 
 .bible_text_verseNumber {
-  color: var(--primary);
+  color: var(third);
   min-width: 25px;
 }
 
-.bible_text_row {
-  margin-bottom: 3vw;
+.bible_text_options {
+  margin-left: 15px;
+  cursor: pointer;
+  width: var(--fontSizeNormal);
+  transition: 0.3s all;
+}
+
+.scaleUp {
+  transform: scale(1.2);
 }
 
 .bible_text_container {
@@ -111,17 +118,18 @@
 }
 
 .bible_text {
-  color: var(--primary);
+  color: var(third);
 }
 
 .bible_text_container_prayer {
   animation: prayer 2.5s infinite;
   font-size: var(--fontSizeBigger);
-  color: var(--primary);
+  color: var(third);
   font-style: italic;
   text-align: center;
   margin: 16px 0;
   transition: 0.3s all;
+  z-index: 2;
 }
 
 @keyframes prayer {
@@ -136,20 +144,27 @@
   }
 }
 
+.cross_svg {
+  width: 100px;
+  position: absolute;
+  transform: translateY(150px);
+  z-index: 1;
+}
+
 /* ACTIVE */
 
 .readpage_active_title {
   font-size: var(--fontSizeBigger);
-  color: var(--primary);
+  color: var(third);
 }
 
 .readpage_container_bible_text {
   font-size: var(--fontSizeNormal);
-  color: var(--primary);
+  color: var(third);
 }
 .readpage_container_bible_chapters {
   font-size: var(--fontSizeNormal);
-  color: var(--primary);
+  color: var(third);
   cursor: pointer;
 }
 
@@ -172,7 +187,7 @@
   top: 50%;
   border-radius: 4px;
   transition: 0.3s all;
-  background-color: var(--primaryHalf);
+  background-color: var(--secondHalf);
   padding: 14px 4px;
   right: 25px;
   display: flex;
@@ -188,28 +203,28 @@
   position: absolute;
   width: 2px;
   height: 72px;
-  background: var(--primaryHalf);
+  background: var(--secondHalf);
   transition: 0.3s background;
 }
 
 .next_svg_container::before {
   top: -72px;
   left: 21px;
-  background: linear-gradient(transparent, var(--primaryHalf));
+  background: linear-gradient(transparent, var(--secondHalf));
 }
 
 .next_svg_container::after {
   bottom: -72px;
   left: 21px;
-  background: linear-gradient(var(--primaryHalf), transparent);
+  background: linear-gradient(var(--secondHalf), transparent);
 }
 
 .next_svg_container:hover::after {
-  background: linear-gradient(var(--primary), transparent);
+  background: linear-gradient(var(--second), transparent);
 }
 
 .next_svg_container:hover::before {
-  background: linear-gradient(transparent, var(--primary));
+  background: linear-gradient(transparent, var(--second));
 }
 
 .next_svg {
@@ -217,7 +232,7 @@
 }
 
 .next_svg_container:hover {
-  background-color: var(--primary);
+  background-color: var(--second);
 }
 
 /* BACK BUTTON */
@@ -227,7 +242,7 @@
   top: 50%;
   border-radius: 4px;
   transition: 0.3s all;
-  background-color: var(--primaryHalf);
+  background-color: var(--secondHalf);
   padding: 14px 4px;
   left: 25px;
   display: flex;
@@ -243,28 +258,28 @@
   position: absolute;
   width: 2px;
   height: 72px;
-  background: var(--primaryHalf);
+  background: var(--secondHalf);
   transition: 0.3s background;
 }
 
 .back_svg_container::before {
   top: -72px;
   left: 21px;
-  background: linear-gradient(transparent, var(--primaryHalf));
+  background: linear-gradient(transparent, var(--secondHalf));
 }
 
 .back_svg_container::after {
   bottom: -72px;
   left: 21px;
-  background: linear-gradient(var(--primaryHalf), transparent);
+  background: linear-gradient(var(--secondHalf), transparent);
 }
 
 .back_svg_container:hover::after {
-  background: linear-gradient(var(--primary), transparent);
+  background: linear-gradient(var(--second), transparent);
 }
 
 .back_svg_container:hover::before {
-  background: linear-gradient(transparent, var(--primary));
+  background: linear-gradient(transparent, var(--second));
 }
 
 .back_svg {
@@ -272,7 +287,7 @@
 }
 
 .back_svg_container:hover {
-  background-color: var(--primary);
+  background-color: var(--second);
 }
 
 /* End Bible Reading Page2 */

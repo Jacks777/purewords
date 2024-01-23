@@ -5,6 +5,9 @@ import Read from "./Pages/Read";
 
 import "./App.css";
 import "./Bible_reading.css";
+import "./search.css";
+
+import Search from "./Pages/Search";
 
 function App() {
   return (
@@ -13,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/read" element={<Read />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </Router>
     </div>

@@ -5,6 +5,7 @@ import { Footer } from "../Components/Footer";
 import bibleChaptersJSON from "../bible-master/Books.json";
 import bibleData from "../bible-master/Obadiah.json";
 import { Link } from "react-router-dom";
+import LoadingComp from "../Components/LoadingComp";
 
 const Read = () => {
   return (
@@ -23,6 +24,7 @@ function BibleReader() {
   const [selectedBookIcon, setSelectedBookIcon] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isCopied, setIsCopied] = useState(null);
 
   const handleSelectBook = async (name) => {
     setSelectedBook(name);
@@ -58,6 +60,10 @@ function BibleReader() {
     } else {
       setIsLoading(true);
       setSelectedChapter(chapter);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2500);
     }
   };
 
@@ -94,6 +100,26 @@ function BibleReader() {
           behavior: "smooth",
         });
       }
+    }
+  };
+
+  const handleCopy = async (verse, book) => {
+    try {
+      // Use the Clipboard API to copy text to clipboard
+      await navigator.clipboard.writeText(
+        '"' + verse.text + '" ' + book + ":" + verse.verse
+      );
+
+      // Set isCopied to verse.verse for highlighting purposes
+      setIsCopied(verse.verse);
+
+      // Reset the copied state after a delay
+      setTimeout(() => {
+        setIsCopied(null);
+      }, 300);
+    } catch (error) {
+      console.error("Error copying to clipboard:", error);
+      alert("Error copying verse to clipboard. Please try again.");
     }
   };
 
@@ -209,11 +235,19 @@ function BibleReader() {
                 {selectedBookContent
                   .find((chapter) => chapter.chapter === selectedChapter)
                   .verses.map((verse) => (
-                    <div className="bible_text_row">
+                    <div key={verse.verse} className="bible_text_row">
                       <p className="bible_text_verseNumber">{verse.verse}</p>
                       <p className="bible_text" key={verse.verse}>
                         {verse.text}
                       </p>
+                      <img
+                        src="/assets/copy.svg"
+                        className={`bible_text_copy ${
+                          isCopied === verse.verse ? "scaleUp" : ""
+                        }`}
+                        onClick={() => handleCopy(verse, selectedBook)}
+                        alt="copy svg"
+                      />
                     </div>
                   ))}
               </div>
@@ -221,12 +255,7 @@ function BibleReader() {
           )}
         </div>
       ) : (
-        <p
-          className="bible_text_container_prayer"
-          onClick={() => handleSelectChapterInit()}
-        >
-          "In the name of the Father, and of the Son, and of the Holy Spirit"
-        </p>
+        <LoadingComp onClick={() => handleSelectChapterInit()} />
       )}
     </div>
   );
