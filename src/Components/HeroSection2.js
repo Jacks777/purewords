@@ -22,7 +22,7 @@ export function HeroSection2() {
         </div>
         <div className="hero_container2_right">
           <div className="hero_title2-top">
-            Read and Learn<br></br>With PureWords.
+            Read and Learn<br></br>With Our App.
           </div>
           <div className="hero_title2-info">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam

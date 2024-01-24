@@ -8,7 +8,7 @@ export function NavTitleTop() {
         alt="pigeon dark svg"
         className="pigeon_svg"
       />
-      <p className="title_text title_text_dark">PureWords</p>
+      <p className="title_text title_text_dark">Invictus Deus</p>
     </Link>
   );
 }

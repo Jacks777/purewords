@@ -286,6 +286,13 @@
   width: 36px;
 }
 
+.search_title {
+  color: var(--third);
+  font-size: var(--fontSizeBigger);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
 .back_svg_container:hover {
   background-color: var(--second);
 }

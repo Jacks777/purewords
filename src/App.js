@@ -14,9 +14,9 @@ function App() {
     <div className="main_app_container">
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/read" element={<Read />} />
-          <Route path="/search" element={<Search />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/read" element={<Read />} />
+          <Route exact path="/search" element={<Search />} />
         </Routes>
       </Router>
     </div>

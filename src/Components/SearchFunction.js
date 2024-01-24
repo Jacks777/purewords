@@ -95,6 +95,7 @@ const SearchFunction = () => {
 
   return (
     <div className="search_container">
+      <h3 className="search_title">What bible verse are you looking for?</h3>
       <div className="searchBar_container">
         <input
           type="text"

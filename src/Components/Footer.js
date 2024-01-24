@@ -22,7 +22,7 @@ export function Footer() {
         </Link>
       </div>
       <div className="footer_container_rights">
-        <p>&copy; 2024 All rights reserved PureWords</p>
+        <p>&copy; 2024 All rights reserved InvictusDeus</p>
       </div>
     </footer>
   );

@@ -4,7 +4,7 @@ export function HeroSection() {
       <div className="hero_container_inner container">
         <div className="hero_container_left">
           <div className="hero_title-top">
-            <p className="hero_title_top_intro">Pure Words.</p>
+            <p className="hero_title_top_intro">Invictus Deus.</p>
             Discover <br></br>Connect<br></br>Grow
           </div>
           <div className="hero_title-info">
