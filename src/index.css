@@ -3,6 +3,7 @@
   --second: #546e7a;
   --secondHalf: #546e7a5e;
   --third: #37474f;
+  --danger: rgb(211, 52, 52);
   --fontSizeTitle: calc(45px + 0.20625vw);
   --fontSizeBiggest: calc(32px + 0.20625vw);
   --fontSizeBigger: calc(25px + 0.20625vw);

@@ -8,20 +8,36 @@ import "./Bible_reading.css";
 import "./search.css";
 
 import Search from "./Pages/SearchPage";
-import Register from "./Pages/RegisterPage";
-import Login from "./Pages/LoginPage";
+import Register from "./Pages/authPages/RegisterPage";
+import Login from "./Pages/authPages/LoginPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import Dashboard from "./Pages/Dashboard";
+import PrivateRoute from "./Components/PrivateRoute";
+import NotFound from "./Pages/NotFound";
+import UpdateProfile from "./Pages/authPages/UpdateProfile";
+import ForgotPassword from "./Pages/authPages/ForgotPassword";
 
 function App() {
   return (
     <div className="main_app_container">
       <Router>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/read" element={<Read />} />
-          <Route exact path="/search" element={<Search />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/login" element={<Login />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route exact path="/dashboard" element={<PrivateRoute />}>
+              <Route exact path="/dashboard" element={<Dashboard />} />
+            </Route>
+            <Route exact path="/update-profile" element={<PrivateRoute />}>
+              <Route exact path="/update-profile" element={<UpdateProfile />} />
+            </Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/read" element={<Read />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </Router>
     </div>
   );

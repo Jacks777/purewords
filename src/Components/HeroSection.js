@@ -5,11 +5,15 @@ export function HeroSection() {
         <div className="hero_container_left">
           <div className="hero_title-top">
             <p className="hero_title_top_intro">Invictus Deus.</p>
-            Discover <br></br>Connect<br></br>Grow
-          </div>
-          <div className="hero_title-info">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            aliquet est eget dapibus. In hac habitasse platea dictumst.
+            <p className="hero_title_top_intro-extra">Unconquerable God.</p>
+            <div className="hero_title_top_intro_box">
+              <div className="hero_title_top_intro_left">
+                <p>Discover</p> <p>Connect</p> <p>Grow</p>
+              </div>
+              <div className="hero_title_top_intro_right">
+                <p>the Bible.</p> <p>with Christians.</p> <p>in Faith.</p>
+              </div>
+            </div>
           </div>
         </div>
         <div className="hero_container_right">

@@ -2,27 +2,27 @@ import React, { useRef, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 
 import "../../register-login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function LoginForm() {
-  const { login } = useAuth();
+export default function ForgotPasswordForm() {
+  const { resetPassword } = useAuth();
   const emailRef = useRef();
-  const passwordRef = useRef();
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
   async function handleLogin(e) {
     e.preventDefault();
 
     try {
+      setMessage("");
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-
-      navigate("/dashboard");
+      await resetPassword(emailRef.current.value);
+      setMessage("Please check your inbox.");
     } catch (error) {
-      setError("Failed to log in.");
+      setError("Failed to send mail.");
     }
     setLoading(false);
   }
@@ -35,22 +35,26 @@ export default function LoginForm() {
             {error}
           </div>
         </div>
+        <div className="message_auth_box">
+          <div className={`message_auth ${message ? "active_message" : ""}`}>
+            {message}
+          </div>
+        </div>
         <div className="form_innercontainer">
-          <h3>Login</h3>
+          <h3>Password Reset</h3>
           <input type="email" ref={emailRef} placeholder="Email" />
-          <input type="password" ref={passwordRef} placeholder="Password" />
 
           <div className="registerButton_container">
             <div>
               <Link className="switchBetweenLogin" to="/register">
-                Need an account?
+                Register
               </Link>
-              <Link className="forgotPasswordButton" to="/forgot-password">
-                Forgot password?
+              <Link className="switchBetweenLogin" to="/login">
+                Log in
               </Link>
             </div>
             <button disabled={loading} className="registerButton">
-              Login
+              Reset Password
             </button>
           </div>
         </div>
