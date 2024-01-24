@@ -359,6 +359,11 @@ nav {
 .link-style {
   color: var(--third);
   text-decoration: none;
+  transition: 0.3s all;
+}
+
+.nav_navigation_links:hover {
+  color: var(--primary);
 }
 
 .title_text_dark {

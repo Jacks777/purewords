@@ -11,14 +11,14 @@ export function Footer() {
         <Link to="/" className="link-style">
           Home
         </Link>
-        <Link to="/about" className="link-style">
-          About
+        <Link to="/login" className="link-style">
+          Login
         </Link>
-        <Link to="/about" className="link-style">
-          About
+        <Link to="/register" className="link-style">
+          Register
         </Link>
-        <Link to="/about" className="link-style">
-          About
+        <Link to="/read" className="link-style">
+          Read
         </Link>
       </div>
       <div className="footer_container_rights">
