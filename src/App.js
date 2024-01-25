@@ -17,6 +17,7 @@ import NotFound from "./Pages/NotFound";
 import UpdateProfile from "./Pages/authPages/UpdateProfile";
 import ForgotPassword from "./Pages/authPages/ForgotPassword";
 import ProfilePage from "./Pages/DashboardPages/ProfilePage";
+import NewPost from "./Pages/DashboardPages/NewPost";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path="/profile-page/:uid" element={<PrivateRoute />}>
               <Route path="/profile-page/:uid" element={<ProfilePage />} />
+            </Route>
+            <Route path="/new-post" element={<PrivateRoute />}>
+              <Route path="/new-post" element={<NewPost />} />
             </Route>
             <Route path="/" element={<Home />} />
             <Route path="/read" element={<Read />} />

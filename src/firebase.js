@@ -1,4 +1,5 @@
 import firebase from "firebase/compat/app";
+import { getFirestore } from "firebase/firestore";
 import "firebase/compat/auth";
 
 // Your web app's Firebase configuration
@@ -10,5 +11,9 @@ const app = firebase.initializeApp({
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 });
+
+const postDB = getFirestore(app);
+
 export const auth = app.auth();
+export { postDB };
 export default app;

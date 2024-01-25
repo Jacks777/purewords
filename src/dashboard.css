@@ -24,6 +24,9 @@
 .dashboard_feed_box_inner {
   color: var(--third);
   padding: 14px;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: anywhere;
 }
 
 .dashboard_feed_box_top {

@@ -21,8 +21,6 @@ const ProfilePage = () => {
     }
   }
 
-  // If UID is provided in the URL, show the specified user's profile
-  // Otherwise, show the current user's profile
   const targetUid = uid || (currentUser && currentUser.uid);
 
   return (

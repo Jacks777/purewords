@@ -1,9 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import "../../navbottom.css";
+import { useAuth } from "../../contexts/AuthContext";
 
-const NavBottom = ({ profilePageLink }) => {
+const NavBottom = () => {
+  const [error, setError] = useState("");
+  const { currentUser, logout } = useAuth();
+  const [profilePageLink, setProfilePageLink] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      setProfilePageLink(`/profile-page/${currentUser.uid}`);
+    }
+  }, [currentUser]);
+
   return (
     <div className="navbottom_container">
       <div className="navbottom_link_box">
@@ -23,7 +35,7 @@ const NavBottom = ({ profilePageLink }) => {
           />
           <p className="navbottom_link_title">Rosary</p>
         </Link>
-        <Link className="navbottom_link_comp" to="/dashboard">
+        <Link className="navbottom_link_comp" to="/new-post">
           <img
             className="navbottom_link_svg navbottom_link_main_svg"
             src="/assets/plus.svg"
