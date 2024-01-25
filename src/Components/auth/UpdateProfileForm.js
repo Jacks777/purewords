@@ -13,7 +13,7 @@ export default function UpdateProfileForm() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  function handleLogin(e) {
+  function handleUpdateProfile(e) {
     e.preventDefault();
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
@@ -23,25 +23,29 @@ export default function UpdateProfileForm() {
     const promises = [];
     setLoading(true);
     setError("");
+
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value));
     }
-
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value));
     }
 
     Promise.all(promises)
       .then(() => {
-        navigate("/dashboard");
+        navigate.push("/dashboard");
       })
-      .catch(() => "Failed to update account.")
-      .finally(() => setLoading(false));
+      .catch(() => {
+        setError("Failed to update account");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   return (
     <div className="register_container">
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleUpdateProfile}>
         <div className="error_message_auth_box">
           <div className={`error_message_auth ${error ? "active_error" : ""}`}>
             {error}
@@ -50,6 +54,7 @@ export default function UpdateProfileForm() {
         <div className="form_innercontainer">
           <h3>Update Profile</h3>
           <input
+            required
             defaultValue={currentUser.email}
             type="email"
             ref={emailRef}

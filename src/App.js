@@ -11,11 +11,12 @@ import Search from "./Pages/SearchPage";
 import Register from "./Pages/authPages/RegisterPage";
 import Login from "./Pages/authPages/LoginPage";
 import { AuthProvider } from "./contexts/AuthContext";
-import Dashboard from "./Pages/Dashboard";
+import Dashboard from "./Pages/DashboardPages/Dashboard";
 import PrivateRoute from "./Components/PrivateRoute";
 import NotFound from "./Pages/NotFound";
 import UpdateProfile from "./Pages/authPages/UpdateProfile";
 import ForgotPassword from "./Pages/authPages/ForgotPassword";
+import ProfilePage from "./Pages/DashboardPages/ProfilePage";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
             </Route>
             <Route exact path="/update-profile" element={<PrivateRoute />}>
               <Route exact path="/update-profile" element={<UpdateProfile />} />
+            </Route>
+            <Route path="/profile-page/:uid" element={<PrivateRoute />}>
+              <Route path="/profile-page/:uid" element={<ProfilePage />} />
             </Route>
             <Route path="/" element={<Home />} />
             <Route path="/read" element={<Read />} />
