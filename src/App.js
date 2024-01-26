@@ -18,6 +18,7 @@ import UpdateProfile from "./Pages/authPages/UpdateProfile";
 import ForgotPassword from "./Pages/authPages/ForgotPassword";
 import ProfilePage from "./Pages/DashboardPages/ProfilePage";
 import NewPost from "./Pages/DashboardPages/NewPost";
+import SearchBar from "./Pages/SearchTest";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="/new-post" element={<NewPost />} />
             </Route>
             <Route path="/" element={<Home />} />
+            <Route path="/searchbar" element={<SearchBar />} />
             <Route path="/read" element={<Read />} />
             <Route path="/search" element={<Search />} />
             <Route path="/register" element={<Register />} />

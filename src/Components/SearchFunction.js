@@ -1,95 +1,101 @@
 import React, { useEffect, useState } from "react";
-import bibleChaptersJSON from "../bible-master/Books.json";
 import LoadingComp from "./LoadingComp";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { postDB } from "../firebase";
 
 const SearchFunction = () => {
-  const [searchInput, setSearchInput] = useState("");
-  const [bibleData, setBibleData] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
-  const loadBookData = async (bookName) => {
-    try {
-      const response = await import(`../bible-master/${bookName}.json`);
-      return response.default;
-    } catch (error) {
-      console.error(`Error loading ${bookName} data:`, error);
-      return null;
-    }
-  };
-
-  const getBooks = () => {
-    const formattedBookNames = bibleChaptersJSON.map((bookName, index) => {
-      return bookName.replace(/\s+/g, "");
-    });
-
-    return formattedBookNames;
-  };
-
-  const loadAllBooks = async () => {
-    const bookNames = getBooks();
-    const allBooksData = [];
-
-    for (const bookName of bookNames) {
-      const bookData = await loadBookData(bookName);
-
-      if (bookData) {
-        allBooksData.push({
-          book: bookName,
-          chapters: bookData.chapters,
-        });
-      }
-    }
-
-    return allBooksData;
-  };
-
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const allBooksData = await loadAllBooks();
-      setBibleData(allBooksData);
-    };
-
-    fetchBooks();
-  }, []);
-
-  const handleSubmit = () => {
-    setSearchResults(searchVerses(searchInput));
-  };
-
-  const searchVerses = (query) => {
-    const lowercaseQuery = query.toLowerCase();
-
-    return bibleData.reduce((acc, book) => {
-      const matchingChapters = book.chapters.reduce((accChapters, chapter) => {
-        const matchingVerses = chapter.verses.filter((verse) =>
-          verse.text.toLowerCase().includes(lowercaseQuery)
-        );
-
-        if (matchingVerses.length > 0) {
-          accChapters.push({
-            ...chapter,
-            verses: matchingVerses,
-          });
-        }
-
-        return accChapters;
-      }, []);
-
-      if (matchingChapters.length > 0) {
-        acc.push({
-          ...book,
-          chapters: matchingChapters,
-        });
-      }
-      return acc;
-    }, []);
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleKeyPress = (e) => {
     // Check if the pressed key is Enter (key code 13)
     if (e.key === "Enter") {
       // Trigger the search function when Enter is pressed
-      handleSubmit();
+      handleSearch();
+    }
+  };
+
+  const toggleCase = (text) => {
+    if (!text || typeof text !== "string") {
+      return text;
+    }
+
+    const firstLetter = text.charAt(0);
+
+    if (firstLetter === firstLetter.toLowerCase()) {
+      // First letter is lowercase, convert to uppercase
+      return firstLetter.toUpperCase() + text.slice(1);
+    } else {
+      // First letter is uppercase, convert to lowercase
+      return firstLetter.toLowerCase() + text.slice(1);
+    }
+  };
+
+  const toggleCase2 = (text) => {
+    if (!text || typeof text !== "string") {
+      return text;
+    }
+
+    // Split the text into an array of words
+    const words = text.split(/\s+/);
+
+    // Toggle the case of each word
+    const toggledWords = words.map((word) => {
+      const firstLetter = word.charAt(0);
+
+      if (firstLetter === firstLetter.toLowerCase()) {
+        // First letter is lowercase, convert to uppercase
+        return firstLetter.toUpperCase() + word.slice(1);
+      } else {
+        // First letter is uppercase, convert to lowercase
+        return firstLetter.toLowerCase() + word.slice(1);
+      }
+    });
+
+    // Join the toggled words back into a single string
+    return toggledWords.join(" ");
+  };
+
+  const handleSearch = async () => {
+    try {
+      setIsLoading(true);
+      const switchedText = toggleCase(searchText);
+      const switchedText2 = toggleCase2(searchText);
+
+      console.log(searchText, switchedText, switchedText2);
+
+      const querySnapshot = await getDocs(collection(postDB, "bible-master"));
+
+      const results = [];
+
+      querySnapshot.forEach((doc) => {
+        const bookData = doc.data();
+
+        // Iterate through chapters and verses to find the matching text
+        bookData.chapters.forEach((chapter) => {
+          chapter.verses.forEach((verse) => {
+            if (
+              verse.text.includes(searchText) ||
+              verse.text.includes(switchedText) ||
+              verse.text.includes(switchedText2)
+            ) {
+              results.push({
+                book: bookData.book,
+                chapter: chapter.chapter,
+                verse: verse.verse,
+                text: verse.text,
+              });
+            }
+          });
+        });
+      });
+
+      setSearchResults(results);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Error searching database:", error);
     }
   };
 
@@ -99,46 +105,74 @@ const SearchFunction = () => {
       <div className="searchBar_container">
         <input
           type="text"
-          placeholder="Exodus 3:3"
+          placeholder="Before Abraham"
           className="searchBar_container_input"
-          value={searchInput}
+          value={searchText}
           onChange={(e) => {
-            setSearchInput(e.target.value);
+            setSearchText(e.target.value);
           }}
           onKeyPress={handleKeyPress}
         />
         <p
           className="searchBar_container_submit"
           onClick={() => {
-            handleSubmit();
+            handleSearch();
           }}
         >
           Search
         </p>
       </div>
-      {searchResults.map((book) => (
-        <SearchResult key={book.book} book={book} />
-      ))}
+      {searchResults && (
+        <div className="searchresult_container">
+          {searchResults.map((result) => (
+            <div
+              className="searchresult_container_chapter"
+              key={result.chapter}
+            >
+              <h3>{`${result.book} ${result.chapter}`}</h3>
+              <SearchResultNew key={result.id} book={result} />
+            </div>
+          ))}
+        </div>
+      )}
+      {isLoading && (
+        <div className="loading_container">
+          <img
+            src="/assets/cross.svg"
+            className="cross_loading_svg"
+            alt="svg loading"
+          />
+        </div>
+      )}
     </div>
   );
 };
 
-function SearchResult({ book }) {
+function SearchResultNew({ book }) {
   return (
-    <div className="searchresult_container" key={book.book}>
-      {book.chapters.map((chapter) => (
-        <div className="searchresult_container_chapter" key={chapter.chapter}>
-          <h3>{`${book.book} ${chapter.chapter}`}</h3>
-          {chapter.verses.map((verse) => (
-            <div className="searchresult_container_box" key={verse.verse}>
-              <p> {verse.text}</p>
-              <p className="searchresult_container_box_book">{`${book.book} ${chapter.chapter}:${verse.verse}`}</p>
-            </div>
-          ))}
-        </div>
-      ))}
+    <div className="searchresult_container_box" key={book.book}>
+      <p> {book.text}</p>
+      <p className="searchresult_container_box_book">{`${book.book} ${book.chapter}:${book.verse}`}</p>
     </div>
   );
 }
+
+// function SearchResult({ book }) {
+//   return (
+//     <div className="searchresult_container" key={book.book}>
+//       {book.chapters.map((chapter) => (
+//         <div className="searchresult_container_chapter" key={chapter.chapter}>
+//           <h3>{`${book.book} ${chapter.chapter}`}</h3>
+//           {chapter.verses.map((verse) => (
+//             <div className="searchresult_container_box" key={verse.verse}>
+//               <p> {verse.text}</p>
+//               <p className="searchresult_container_box_book">{`${book.book} ${chapter.chapter}:${verse.verse}`}</p>
+//             </div>
+//           ))}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
 
 export default SearchFunction;

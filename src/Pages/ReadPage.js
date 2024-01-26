@@ -2,10 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Nav } from "../Components/Nav";
 import { Footer } from "../Components/Footer";
 
-import bibleChaptersJSON from "../bible-master/Books.json";
-import bibleData from "../bible-master/Obadiah.json";
+// import bibleChaptersJSON from "../bible-master/Books.json";
+// import bibleData from "../bible-master/Obadiah.json";
 import { Link, useLocation } from "react-router-dom";
 import LoadingComp from "../Components/LoadingComp";
+
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
+import { postDB } from "../firebase";
 
 const Read = () => {
   return (
@@ -26,29 +36,69 @@ function BibleReader() {
   const [isLoading, setIsLoading] = useState(false);
   const [isCopied, setIsCopied] = useState(null);
 
-  const handleSelectBook = async (name) => {
+  // testing
+  const [allBookNames, setAllBookNames] = useState([]);
+
+  const getBooksDB = async () => {
+    try {
+      const valRef = collection(postDB, "bible-master-books");
+      const dataDb = await getDocs(query(valRef, orderBy("order")));
+
+      const booksData = dataDb.docs.map((val) => {
+        const bookName = val.data()?.name;
+        return {
+          ...val.data(),
+          id: val.id,
+          name: bookName,
+        };
+      });
+
+      setAllBookNames(booksData);
+    } catch (error) {
+      console.error("Error fetching books data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getBooksDB();
+  }, []);
+
+  const getBookContent = async (bookName) => {
+    try {
+      const valRef = doc(postDB, "bible-master", bookName);
+      const docSnapshot = await getDoc(valRef);
+
+      if (docSnapshot.exists()) {
+        return docSnapshot.data();
+      } else {
+        console.log("No such document!");
+        return null; // or handle the case where the document doesn't exist
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return null; // or handle the error appropriately
+    }
+  };
+
+  const handleSelectBookDB = async (name) => {
     setSelectedBook(name);
     setSelectedChapter(null);
 
-    const formattedName = name.replace(/\s+/g, "");
+    const bookContent = await getBookContent(name);
 
-    try {
-      // Use dynamic import to load the JSON file
-      const response = await import(`../bible-master/${formattedName}.json`);
-
-      const data = response.default;
-
-      // Set Icon
+    if (bookContent) {
+      //set icon
       const formattedNameIcon = name.replace(/\s+/g, "-").toLowerCase();
-
       const iconUrl = `/bible-icons/${formattedNameIcon}-600x600-free-bible-icon.png`;
 
-      setSelectedBookContent(data.chapters);
+      setSelectedBookContent(bookContent.chapters);
       setSelectedBookIcon(iconUrl);
-    } catch (error) {
-      console.error("Error loading book content:", error);
+    } else {
+      console.log("error showing icons and chapters");
     }
   };
+
+  //end testing
 
   const handleSelectChapter = (chapter) => {
     setSelectedChapter(chapter);
@@ -103,25 +153,25 @@ function BibleReader() {
     }
   };
 
-  const handleCopy = async (verse, book) => {
-    try {
-      // Use the Clipboard API to copy text to clipboard
-      await navigator.clipboard.writeText(
-        '"' + verse.text + '" ' + book + ":" + verse.verse
-      );
+  // const handleCopy = async (verse, book) => {
+  //   try {
+  //     // Use the Clipboard API to copy text to clipboard
+  //     await navigator.clipboard.writeText(
+  //       '"' + verse.text + '" ' + book + ":" + verse.verse
+  //     );
 
-      // Set isCopied to verse.verse for highlighting purposes
-      setIsCopied(verse.verse);
+  //     // Set isCopied to verse.verse for highlighting purposes
+  //     setIsCopied(verse.verse);
 
-      // Reset the copied state after a delay
-      setTimeout(() => {
-        setIsCopied(null);
-      }, 300);
-    } catch (error) {
-      console.error("Error copying to clipboard:", error);
-      alert("Error copying verse to clipboard. Please try again.");
-    }
-  };
+  //     // Reset the copied state after a delay
+  //     setTimeout(() => {
+  //       setIsCopied(null);
+  //     }, 300);
+  //   } catch (error) {
+  //     console.error("Error copying to clipboard:", error);
+  //     alert("Error copying verse to clipboard. Please try again.");
+  //   }
+  // };
 
   return (
     <div
@@ -136,16 +186,15 @@ function BibleReader() {
             {!selectedBook && (
               <>
                 <div className="readpage_container_books-list">
-                  {bibleChaptersJSON.map((bookName, index) => {
-                    const formattedName = bookName
+                  {allBookNames.map((bookName, index) => {
+                    const formattedName = bookName.name
                       .replace(/\s+/g, "-")
                       .toLowerCase();
-
                     return (
                       <div
                         key={index}
                         className="bible_text_common bible_text_common_box"
-                        onClick={() => handleSelectBook(bookName)}
+                        onClick={() => handleSelectBookDB(bookName.name)}
                       >
                         <img
                           style={{ width: "80px" }}
@@ -153,7 +202,7 @@ function BibleReader() {
                           alt={`Icon for ${formattedName}600x600.png`}
                         />
 
-                        <p>{bookName}</p>
+                        <p>{bookName.name}</p>
                       </div>
                     );
                   })}

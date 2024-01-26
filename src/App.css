@@ -40,7 +40,7 @@
 
 .hero_title_top_intro_box {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .hero_title_top_intro_left {
@@ -493,9 +493,7 @@ nav {
     width: 100%;
     justify-content: end;
   }
-  .hero_title_top_intro_box {
-    justify-content: space-between;
-  }
+
   .hero_title_top_intro_left,
   .hero_title_top_intro_right {
     font-size: var(--fontSizeBigger);
