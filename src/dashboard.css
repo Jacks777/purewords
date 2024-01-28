@@ -69,7 +69,11 @@
   flex: 1;
   display: flex;
   gap: 15px;
-  color: var(--thirdHalf);
+  color: var(--danger);
+  opacity: 0.6;
+}
+.actions_utils:hover {
+  opacity: 1;
 }
 
 .actions {
@@ -127,7 +131,7 @@
 }
 
 .option_yes {
-  color: rgb(79, 53, 52);
+  color: var(--danger);
 }
 .option_no {
   color: var(--primary);
@@ -135,7 +139,7 @@
 
 .option_yes:hover {
   color: var(--primary);
-  background-color: rgb(79, 53, 52);
+  background-color: var(--danger);
 }
 
 .option_no:hover {

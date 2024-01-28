@@ -96,7 +96,7 @@ input {
   font-size: var(--fontSizeSmall);
   text-decoration: none;
   transition: 0.3s all;
-  color: rgb(79, 53, 52);
+  color: var(--danger);
 }
 
 .newpostButton_container div {

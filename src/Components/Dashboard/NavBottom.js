@@ -27,13 +27,14 @@ const NavBottom = () => {
           />
           <p className="navbottom_link_title">Home</p>
         </Link>
+        {/* TODO! */}
         <Link className="navbottom_link_comp" to="/dashboard">
           <img
             className="navbottom_link_svg"
             src="/assets/rosary.svg"
             alt="svg rosary"
           />
-          <p className="navbottom_link_title">Rosary</p>
+          <p className="navbottom_link_title">Prayers</p>
         </Link>
         <Link className="navbottom_link_comp" to="/new-post">
           <img
@@ -48,7 +49,7 @@ const NavBottom = () => {
             src="/assets/bible_dark.svg"
             alt="svg bible"
           />
-          <p className="navbottom_link_title">Read</p>
+          <p className="navbottom_link_title">Plans</p>
         </Link>
         <Link className="navbottom_link_comp" to={profilePageLink}>
           <img

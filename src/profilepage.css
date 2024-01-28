@@ -1,0 +1,15 @@
+.profile_container_main {
+  width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.profile_container {
+  margin-top: 25px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

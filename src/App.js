@@ -19,6 +19,7 @@ import ForgotPassword from "./Pages/authPages/ForgotPassword";
 import ProfilePage from "./Pages/DashboardPages/ProfilePage";
 import NewPost from "./Pages/DashboardPages/NewPost";
 import SearchBar from "./Pages/SearchTest";
+import AddInfoProfile from "./Pages/DashboardPages/AddInfoProfile";
 
 function App() {
   return (
@@ -38,9 +39,15 @@ function App() {
             <Route path="/new-post" element={<PrivateRoute />}>
               <Route path="/new-post" element={<NewPost />} />
             </Route>
-            {/* <Route path="/post/:uid" element={<PrivateRoute />}>
-              <Route path="/post/:uid" element={<ViewPostPage />} />
-            </Route> */}
+            <Route
+              path="/profile-page/add-profile-info"
+              element={<PrivateRoute />}
+            >
+              <Route
+                path="/profile-page/add-profile-info"
+                element={<AddInfoProfile />}
+              />
+            </Route>
             <Route path="/" element={<Home />} />
 
             <Route path="/read" element={<Read />} />

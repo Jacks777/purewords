@@ -55,7 +55,6 @@ const FeedBox = ({
 
         <div className="dashboard_feed_box_end">
           <div className="actions_utils">
-            <p className="actions_report">Report</p>
             {currentUser.uid === feedData.postProfile && (
               <p
                 className="actions_delete actions"
