@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
-const FeedBox = ({ feedData }) => {
+const FeedBox = ({
+  feedData,
+  handleDelete,
+  handleDeleteCheck,
+  handleLikePost,
+}) => {
+  const [heartHover, setHeartHover] = useState(false);
+
   function timeAgo(timestamp) {
     const currentTime = new Date().getTime();
     const timeDifference = currentTime - timestamp;
@@ -20,12 +29,14 @@ const FeedBox = ({ feedData }) => {
       return "recent";
     }
   }
+  const { currentUser } = useAuth();
+
+  const currentUserId = currentUser.uid;
 
   return (
     <div className="dashboard_feed_box">
       <div className="dashboard_feed_box_inner">
         <div className="dashboard_feed_box_top">
-          {/* <h4 className="dashboard_feed_box_top_title">Name goes here</h4> */}
           <p className="dashboard_feed_box_top_date">
             {timeAgo(feedData.uploadTime)}
           </p>
@@ -41,11 +52,56 @@ const FeedBox = ({ feedData }) => {
             className="dashboard_feed_box_content_text"
           ></p>
         </div>
+
         <div className="dashboard_feed_box_end">
-          <p className="actions_report">Report</p>
+          <div className="actions_utils">
+            <p className="actions_report">Report</p>
+            {currentUser.uid === feedData.postProfile && (
+              <p
+                className="actions_delete actions"
+                // onClick={() => handleDelete(feedData.id)}
+                onClick={() => handleDeleteCheck(feedData.id)}
+              >
+                Delete
+              </p>
+            )}
+          </div>
           <div className="dashboard_feed_box_end_actions">
-            <p className="actions_reply">Reply</p>
-            <p className="actions_like">Like</p>
+            {feedData.likes && feedData.likes.length > 0 && (
+              <p>{feedData.likes.length}</p>
+            )}
+            {!feedData.likes || !feedData.likes.includes(currentUserId) ? (
+              <div
+                className="actions_like_box"
+                onPointerEnter={() => setHeartHover(true)}
+                onPointerLeave={() => setHeartHover(false)}
+              >
+                {!heartHover ? (
+                  <img
+                    src="assets/heart_empty.svg"
+                    alt="heart empty like"
+                    className="actions_like actions"
+                    onClick={() => handleLikePost(feedData.id, currentUserId)}
+                  />
+                ) : (
+                  <img
+                    src="assets/heart_fill.svg"
+                    alt="heart filled like"
+                    className="actions_like actions"
+                    onClick={() => handleLikePost(feedData.id, currentUserId)}
+                  />
+                )}
+              </div>
+            ) : (
+              <div className="actions_like_box">
+                <img
+                  src="assets/heart_fill.svg"
+                  alt="heart filled like"
+                  className="actions_like actions"
+                  onClick={() => handleLikePost(feedData.id, currentUserId)}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

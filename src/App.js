@@ -38,14 +38,18 @@ function App() {
             <Route path="/new-post" element={<PrivateRoute />}>
               <Route path="/new-post" element={<NewPost />} />
             </Route>
+            {/* <Route path="/post/:uid" element={<PrivateRoute />}>
+              <Route path="/post/:uid" element={<ViewPostPage />} />
+            </Route> */}
             <Route path="/" element={<Home />} />
-            <Route path="/searchbar" element={<SearchBar />} />
+
             <Route path="/read" element={<Read />} />
             <Route path="/search" element={<Search />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="*" element={<NotFound />} />
+            <Route exact path="/profile-page" element={<Login />} />
           </Routes>
         </AuthProvider>
       </Router>

@@ -21,6 +21,10 @@
   margin-bottom: 50px;
 }
 
+.linkToPost {
+  text-decoration: none;
+}
+
 .dashboard_feed_box_inner {
   color: var(--third);
   padding: 14px;
@@ -46,6 +50,7 @@
   border-bottom: 1px solid var(--third);
 }
 .dashboard_feed_box_content_title {
+  color: var(--third);
   font-size: var(--fontSizeBiggest);
   margin-bottom: 10px;
 }
@@ -53,17 +58,91 @@
   font-size: var(--fontSizeNormal);
 }
 .dashboard_feed_box_end {
+  margin-top: 10px;
   display: flex;
 }
 .dashboard_feed_box_end_actions {
   display: flex;
   font-size: var(--fontSizeNormal);
 }
-.actions_report {
+.actions_utils {
   flex: 1;
-
+  display: flex;
+  gap: 15px;
   color: var(--thirdHalf);
 }
+
+.actions {
+  cursor: pointer;
+}
+
+.actions_like_box {
+  margin-left: 0px;
+}
+/* DELETE CHECK BOX */
+.delete_active {
+  filter: blur(2px);
+}
+
+.container_delete {
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete_box {
+  width: 300px;
+  background-color: var(--second);
+  border-radius: 8px;
+  padding: 25px;
+}
+
+.delete_box h3 {
+  font-size: var(--fontSizeBigger);
+  color: var(--primary);
+}
+
+.delete_box_inner div {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.option {
+  font-size: var(--fontSizeNormal);
+  width: 45%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: 0.3s all;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.option_yes {
+  color: rgb(79, 53, 52);
+}
+.option_no {
+  color: var(--primary);
+}
+
+.option_yes:hover {
+  color: var(--primary);
+  background-color: rgb(79, 53, 52);
+}
+
+.option_no:hover {
+  color: var(--third);
+  background-color: var(--primary);
+}
+
 @media (max-width: 640px) {
   .dashboard_container_feed {
     width: 100%;

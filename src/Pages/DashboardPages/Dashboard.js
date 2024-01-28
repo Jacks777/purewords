@@ -6,10 +6,19 @@ import NavBottom from "../../Components/Dashboard/NavBottom";
 import DashboardComp from "../../Components/Dashboard/DashboardComp";
 
 export default function Dashboard() {
+  const [openCheckDelete, setOpenCheckDelete] = useState(false);
+
+  const handleToggleCheckDelete = (toggle) => {
+    setOpenCheckDelete(toggle);
+  };
+
   return (
     <>
-      <DashboardComp />
-      <NavBottom />
+      <DashboardComp
+        openCheckDelete={openCheckDelete}
+        handleToggleCheckDelete={handleToggleCheckDelete}
+      />
+      {!openCheckDelete && <NavBottom />}
     </>
   );
 }

@@ -7,6 +7,7 @@ const SearchFunction = () => {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [noResult, setNoResult] = useState(false);
 
   const handleKeyPress = (e) => {
     // Check if the pressed key is Enter (key code 13)
@@ -60,6 +61,7 @@ const SearchFunction = () => {
   const handleSearch = async () => {
     try {
       setIsLoading(true);
+      setNoResult(false);
       const switchedText = toggleCase(searchText);
       const switchedText2 = toggleCase2(searchText);
 
@@ -92,9 +94,19 @@ const SearchFunction = () => {
       });
 
       setSearchResults(results);
+      console.log(results);
+
+      if (results.length === 0) {
+        setNoResult(true);
+      } else {
+        setNoResult(false);
+      }
+
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
+      setNoResult(true);
+
       console.error("Error searching database:", error);
     }
   };
@@ -105,7 +117,7 @@ const SearchFunction = () => {
       <div className="searchBar_container">
         <input
           type="text"
-          placeholder="Before Abraham"
+          placeholder="Before Abraham was, I am."
           className="searchBar_container_input"
           value={searchText}
           onChange={(e) => {
@@ -133,6 +145,18 @@ const SearchFunction = () => {
               <SearchResultNew key={result.id} book={result} />
             </div>
           ))}
+        </div>
+      )}
+      {noResult && (
+        <div className="searchresult_container">
+          <div className="searchresult_container_chapter">
+            <div className="searchresult_container_box">
+              <p> No Results.</p>
+              <p className="searchresult_container_box_book">
+                Please try again, or change the way you're searching.
+              </p>
+            </div>
+          </div>
         </div>
       )}
       {isLoading && (
