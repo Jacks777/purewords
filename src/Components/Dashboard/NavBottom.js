@@ -28,7 +28,7 @@ const NavBottom = () => {
           <p className="navbottom_link_title">Home</p>
         </Link>
         {/* TODO! */}
-        <Link className="navbottom_link_comp" to="/dashboard">
+        <Link className="navbottom_link_comp" to="/prayers">
           <img
             className="navbottom_link_svg"
             src="/assets/rosary.svg"

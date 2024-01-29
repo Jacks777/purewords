@@ -49,6 +49,11 @@
   cursor: pointer;
 }
 
+.options:hover {
+  color: var(--third);
+  background-color: var(--primary);
+}
+
 .danger {
   color: var(--danger);
 }

@@ -18,8 +18,9 @@ import UpdateProfile from "./Pages/authPages/UpdateProfile";
 import ForgotPassword from "./Pages/authPages/ForgotPassword";
 import ProfilePage from "./Pages/DashboardPages/ProfilePage";
 import NewPost from "./Pages/DashboardPages/NewPost";
-import SearchBar from "./Pages/SearchTest";
+// import SearchBar from "./Pages/SearchTest";
 import AddInfoProfile from "./Pages/DashboardPages/AddInfoProfile";
+import PrayerPage from "./Pages/PrayerPage";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
             <Route path="/new-post" element={<PrivateRoute />}>
               <Route path="/new-post" element={<NewPost />} />
             </Route>
+            <Route path="/prayers" element={<PrivateRoute />}>
+              <Route path="/prayers" element={<PrayerPage />} />
+            </Route>
             <Route
               path="/profile-page/add-profile-info"
               element={<PrivateRoute />}
@@ -51,7 +55,7 @@ function App() {
             <Route path="/" element={<Home />} />
 
             <Route path="/read" element={<Read />} />
-            <Route path="/search" element={<Search />} />
+            {/* <Route path="/search" element={<Search />} /> */}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />

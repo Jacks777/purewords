@@ -21,12 +21,10 @@ export function HeroSection2() {
           </div>
         </div>
         <div className="hero_container2_right">
-          <div className="hero_title2-top">
-            Read and Learn<br></br>With Our App.
-          </div>
+          <div className="hero_title2-top">Why InvictusDeus?</div>
           <div className="hero_title2-info">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            aliquet est eget dapibus. In hac habitasse platea dictumst.
+            A Christian hub providing the full King James Bible, prayers, daily
+            verses, readplans, and engaging blogs—all in one place.
           </div>
         </div>
       </div>
