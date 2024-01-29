@@ -12,8 +12,8 @@ export function Nav() {
           <Link to="/read" className="nav_navigation_links">
             Read
           </Link>
-          <Link to="/search" className="nav_navigation_links">
-            Search
+          <Link to="/prayers" className="nav_navigation_links">
+            Prayers
           </Link>
           <Link to="/dashboard" className="nav_navigation_links">
             Login
