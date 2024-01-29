@@ -13,3 +13,42 @@
   flex-direction: column;
   align-items: center;
 }
+
+.profile_img {
+  object-fit: cover;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.4);
+  margin-bottom: 25px;
+}
+
+.profile_username {
+  color: var(--third);
+}
+
+.profile_bio {
+  margin-top: 5px;
+  color: var(--thirdHalf);
+}
+
+.profile_options {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.options {
+  padding: 8px 8px;
+  background-color: var(--secondHalf);
+  text-decoration: none;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.danger {
+  color: var(--danger);
+}

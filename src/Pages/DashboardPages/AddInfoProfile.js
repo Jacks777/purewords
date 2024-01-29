@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
@@ -6,7 +6,9 @@ import { v4 } from "uuid";
 
 import { imgDB, postDB } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+
+import "../../addInfoProfile.css";
 
 const AddInfoProfile = () => {
   const { uid } = useParams();
@@ -19,6 +21,14 @@ const AddInfoProfile = () => {
   const [message, setMessage] = useState("");
   const [bio, setBio] = useState("");
   const [img, setImg] = useState("");
+
+  const [profilePageLink, setProfilePageLink] = useState("");
+
+  useEffect(() => {
+    if (currentUser) {
+      setProfilePageLink(`/profile-page/${currentUser.uid}`);
+    }
+  }, [currentUser]);
 
   const targetUid = uid || (currentUser && currentUser.uid);
 
@@ -38,13 +48,38 @@ const AddInfoProfile = () => {
   };
 
   const handleSubmit = async (e) => {
-    // TOODO
+    e.preventDefault();
 
-    // ERROR
-    // CHECKS
-    // LOADING SCREEN
-    //MORE?
-    e.preventDefault(e);
+    setError("");
+
+    const valRefPosts = collection(postDB, "profiles");
+
+    // Create a query to get only the document with the specified userId
+    const q = query(valRefPosts, where("userId", "==", targetUid));
+
+    const dataDb = await getDocs(q);
+
+    if (dataDb.size > 0) {
+      setError("Profile info already exists.");
+      return;
+    }
+
+    if (!username) {
+      setError("Please choose a username.");
+      return;
+    }
+
+    if (!bio) {
+      setError("Please write a bio.");
+      return;
+    }
+
+    if (!img) {
+      setError("Please choose an image.");
+      return;
+    }
+
+    // If the function has not returned by this point, it means all checks passed
     const valRef = collection(postDB, "profiles");
 
     await addDoc(valRef, {
@@ -53,6 +88,8 @@ const AddInfoProfile = () => {
       bio: bio,
       userId: targetUid,
     });
+    setMessage("Profile info uploaded!");
+    setError("");
   };
 
   const handleAddInfoProfile = async (e) => {
@@ -87,8 +124,8 @@ const AddInfoProfile = () => {
   };
 
   return (
-    <div className="newpost_container">
-      <form>
+    <div className="addInfo_container">
+      <form className="addInfo_form">
         <div className="error_message_auth_box">
           <div className={`error_message_auth ${error ? "active_error" : ""}`}>
             {error}
@@ -99,10 +136,8 @@ const AddInfoProfile = () => {
             {message}
           </div>
         </div>
-
         <div className="form_innercontainer">
           <h3>Update profile info</h3>
-
           <input
             value={username}
             maxLength={50}
@@ -118,15 +153,29 @@ const AddInfoProfile = () => {
             type="text"
             placeholder="Tell us something about yourself..."
           />
-          <input type="file" onChange={(e) => handleUpload(e)} />
-          <div className="newpostButton_container">
-            <Link className="forgotPasswordButton" to="/dashboard">
-              Cancel
+
+          <div className="upload_img">
+            {!img ? (
+              <>
+                <span>Upload image</span>
+                <input
+                  className="upload_img_input"
+                  type="file"
+                  onChange={(e) => handleUpload(e)}
+                />
+              </>
+            ) : (
+              <p>File uploaded!</p>
+            )}
+          </div>
+          <div className="addInfoButton_container">
+            <Link className="forgotPasswordButton" to={profilePageLink}>
+              {message ? "Back" : "Cancel"}
             </Link>
             <button
               disabled={loading}
               onClick={(e) => handleSubmit(e)}
-              className="newpostButton"
+              className="addInfoButton"
             >
               Add Post
             </button>

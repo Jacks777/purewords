@@ -12,6 +12,7 @@ const ProfilePage = () => {
   const { currentUser, logout } = useAuth();
   const [error, setError] = useState("");
   const [userData, setUserData] = useState("");
+  const [rights, setRights] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,6 +28,17 @@ const ProfilePage = () => {
   }
 
   const targetUid = uid || (currentUser && currentUser.uid);
+
+  useEffect(() => {
+    const areRightsEnabled = currentUser.uid === uid;
+    setRights(areRightsEnabled);
+
+    if (targetUid) {
+      getUserData(targetUid);
+    } else {
+      console.error("Invalid targetUid");
+    }
+  }, [targetUid, currentUser.uid, uid]);
 
   const getUserData = async (targetUid) => {
     if (!targetUid) {
@@ -73,21 +85,47 @@ const ProfilePage = () => {
           <div className="profile_container_main">
             {error}
             <div className="profile_container">
-              <h3>{userData.username}</h3>
               <div className="profile_img_container">
                 <img
                   className="profile_img"
-                  src={userData.imageUrl}
+                  src={userData.imageUrl || "/assets/placeholder_profile.jpeg"}
                   alt="profile"
                 />
               </div>
-              <p>{userData.bio}</p>
-              <button onClick={handleLogout}>log out</button>
-              <Link to="/update-profile">Update Profile</Link>
-              <Link to="/profile-page/add-profile-info">
-                Update profile info
-              </Link>
-              {/* Display other user profile information */}
+              {!userData.username && !userData.bio && rights ? (
+                <>
+                  <div>Update profile first please</div>
+                  <Link
+                    className="options_info options danger"
+                    to="/profile-page/add-profile-info"
+                  >
+                    Update profile
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <h3 className="profile_username">{userData.username}</h3>
+                  <p className="profile_bio">{userData.bio}</p>
+                </>
+              )}
+              {rights && (
+                <div className="profile_options">
+                  <p className="options_logout options" onClick={handleLogout}>
+                    log out
+                  </p>
+                  {/* <Link to="/update-profile">Update Profile</Link> */}
+
+                  {!userData.username ||
+                    (!userData.bio && (
+                      <Link
+                        className="options_info options"
+                        to="/profile-page/add-profile-info"
+                      >
+                        Update profile
+                      </Link>
+                    ))}
+                </div>
+              )}
             </div>
           </div>
         </>

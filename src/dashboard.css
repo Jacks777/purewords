@@ -25,6 +25,28 @@
   text-decoration: none;
 }
 
+.dashboard_feed_box_username {
+  text-decoration: none;
+  color: var(--third);
+}
+
+.profile_image_feed {
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.dashboard_feed_box_profile {
+  text-decoration: none;
+  columns: var(--third);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
 .dashboard_feed_box_inner {
   color: var(--third);
   padding: 14px;

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { postDB } from "../../firebase";
 
 const FeedBox = ({
   feedData,
@@ -9,6 +11,7 @@ const FeedBox = ({
   handleLikePost,
 }) => {
   const [heartHover, setHeartHover] = useState(false);
+  const [uploaderData, setUploaderData] = useState(null);
 
   function timeAgo(timestamp) {
     const currentTime = new Date().getTime();
@@ -33,6 +36,34 @@ const FeedBox = ({
 
   const currentUserId = currentUser.uid;
 
+  const getUploaderData = async (profileId) => {
+    const valRefProfiles = collection(postDB, "profiles");
+
+    // Create a query to get only the document with the specified userId
+    const q = query(valRefProfiles, where("userId", "==", profileId));
+
+    const dataDb = await getDocs(q);
+
+    if (dataDb.size > 0) {
+      // If a document with the specified userId is found, set the uploader data
+      const userData = {
+        ...dataDb.docs[0].data(),
+        id: dataDb.docs[0].id,
+      };
+
+      setUploaderData(userData);
+      console.log(userData);
+    } else {
+      // Handle the case when no document with the specified userId is found
+      console.log("User not found");
+    }
+  };
+
+  useEffect(() => {
+    // Assuming feedData.postProfile is the profileId
+    getUploaderData(feedData.postProfile);
+  }, [feedData.postProfile]);
+
   return (
     <div className="dashboard_feed_box">
       <div className="dashboard_feed_box_inner">
@@ -42,6 +73,32 @@ const FeedBox = ({
           </p>
         </div>
         <div className="dashboard_feed_box_content">
+          <Link
+            to={`/profile-page/${feedData.postProfile}`}
+            className="dashboard_feed_box_profile"
+          >
+            {uploaderData ? (
+              <>
+                <img
+                  className="profile_image_feed"
+                  src={
+                    uploaderData.imageUrl || "/assets/placeholder_image.jpeg"
+                  }
+                  alt="profile"
+                />
+                <p className="dashboard_feed_box_username">
+                  {uploaderData.username}
+                </p>
+              </>
+            ) : (
+              <img
+                className="profile_image_feed"
+                src={"/assets/placeholder_profile.jpeg"}
+                alt="profile"
+              />
+            )}
+          </Link>
+
           <h3 className="dashboard_feed_box_content_title">
             {feedData.postTitle}
           </h3>
