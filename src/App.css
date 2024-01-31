@@ -381,9 +381,9 @@ nav {
   transition: 0.3s all;
 }
 
-.nav_navigation_links:hover {
+/* .nav_navigation_links:hover {
   color: var(--primary);
-}
+} */
 
 .title_text_dark {
   color: var(--third) !important;

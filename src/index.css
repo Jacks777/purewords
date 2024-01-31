@@ -8,6 +8,7 @@
   --fontSizeTitle: calc(45px + 0.20625vw);
   --fontSizeBiggest: calc(32px + 0.20625vw);
   --fontSizeBigger: calc(25px + 0.20625vw);
+  --fontSizeMedium: calc(20px + 0.20625vw);
   --fontSizeNormal: calc(15px + 0.20625vw);
   --fontSizeSmall: calc(12px + 0.20625vw);
   --fontSizeSmaller: calc(10px + 0.20625vw);
@@ -41,4 +42,8 @@ body {
     rgba(84, 110, 122, 1) 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cfd8dc",endColorstr="#546e7a",GradientType=1);
+}
+
+html {
+  overflow-x: hidden;
 }

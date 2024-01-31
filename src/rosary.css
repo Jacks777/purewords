@@ -1,0 +1,268 @@
+.rosary_container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  color: var(--third);
+  overflow: hidden;
+}
+
+.rosary_landingPage {
+  margin-top: 50px;
+  width: 90%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rosary_landingPage_title {
+  font-size: var(--fontSizeTitle);
+  margin-bottom: 15px;
+}
+.rosary_landingPage_text {
+  font-size: var(--fontSizeBigger);
+  flex: 1;
+}
+.rosary_landingPage_choice_box {
+  position: absolute;
+  bottom: 10%;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.rosary_landingPage_choice {
+  width: 145px;
+  height: 50px;
+  border-radius: 4px;
+  font-size: var(--fontSizeMedium);
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s all;
+}
+
+.rosary_landingPage_choice:hover {
+  background-color: var(--third);
+  color: var(--primary);
+}
+
+/* BEAD COUNTER */
+
+.bead_counter {
+  position: absolute;
+  width: 100vw;
+  top: 10px;
+  left: 0;
+}
+.bead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: calc(50% - 82.5px);
+  width: 175px;
+  height: 35px;
+  border-radius: 8px;
+
+  background-color: var(--secondHalf);
+}
+/* END COUNTER */
+
+/* ANIMATE */
+.delete {
+  display: none;
+}
+
+.landingButtonAnimate {
+  animation: landingButtonAnimate 1.5s ease-in;
+}
+
+@keyframes landingButtonAnimate {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(30);
+  }
+}
+
+/* AFTER ANIMATION --> HELP ROSARY */
+.rosary_help_container {
+  position: absolute;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  color: var(--primary);
+  background-color: var(--third);
+  transform: translateX(100vw);
+  transition: 1s all;
+}
+
+.rosary_help_container_moveBack {
+  transform: translateX(0);
+}
+
+.rosary_help_container_inner {
+  margin-top: 50px;
+  width: 90%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rosary_help_container_title {
+  font-size: var(--fontSizeTitle);
+  margin-bottom: 15px;
+
+  /* animation: pulsate 1.5s infinite; */
+  transition: 0.3s all;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.rosary_buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 25px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.rosary_help_button {
+  z-index: 10;
+  bottom: 10%;
+  width: 125px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondHalf);
+  color: var(--primary);
+  transform: translateX(0);
+}
+
+.rosary_help_next_button {
+  position: fixed;
+  right: 5%;
+}
+.rosary_help_back_button {
+  position: fixed;
+  left: 5%;
+}
+
+.rosary_help_container_cross {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.rosary_help_crucifix {
+  width: 60%;
+}
+.rosary_help_hand {
+  position: absolute;
+  width: 75px;
+  top: 0;
+}
+
+.rosary_help_hand_animate {
+  animation: makeCross 6s infinite;
+  animation-delay: 2s;
+}
+
+@keyframes makeCross {
+  0% {
+    top: 0%;
+    transform: translateX(0);
+    scale: 1;
+  }
+  5% {
+    top: 0%;
+    transform: translateX(0);
+    scale: 0.8;
+  }
+  10% {
+    top: 0%;
+    transform: translateX(0);
+    scale: 1;
+  }
+  20% {
+    top: 90%;
+    transform: translateX(0);
+    scale: 1;
+  }
+  25% {
+    top: 90%;
+    transform: translateX(0);
+    scale: 0.8;
+  }
+  30% {
+    top: 90%;
+    transform: translateX(0);
+    scale: 1;
+  }
+  40% {
+    top: 25%;
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-120%);
+    scale: 1;
+  }
+  55% {
+    transform: translateX(-120%);
+    scale: 0.8;
+  }
+  60% {
+    transform: translateX(-120%);
+    scale: 1;
+  }
+  70% {
+    transform: translateX(120%);
+    scale: 1;
+    top: 25%;
+  }
+  75% {
+    transform: translateX(120%);
+    scale: 0.8;
+    top: 25%;
+  }
+  80% {
+    transform: translateX(120%);
+    scale: 1;
+    top: 25%;
+  }
+  85% {
+    top: 25%;
+    transform: translateX(0);
+  }
+  100% {
+    top: 0%;
+    transform: translateX(0);
+  }
+}
+
+/* PRAYERS */
+.rosary_help_prayer {
+  font-size: var(--fontSizeMedium);
+  line-height: 2rem;
+}
+
+.fadeIn {
+  animation: fadeInAnimation 1s ease-in-out;
+}

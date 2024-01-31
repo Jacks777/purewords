@@ -9,12 +9,12 @@ export function Nav() {
       <div className="nav_container container">
         <NavTitleTop />
         <div className="nav_navigation">
-          <Link to="/read" className="nav_navigation_links">
-            Read
+          <Link to="/bible" className="nav_navigation_links">
+            Bible
           </Link>
-          <Link to="/prayers" className="nav_navigation_links">
+          {/* <Link to="/prayers" className="nav_navigation_links">
             Prayers
-          </Link>
+          </Link> */}
           <Link to="/dashboard" className="nav_navigation_links">
             Login
           </Link>

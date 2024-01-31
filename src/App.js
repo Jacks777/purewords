@@ -21,6 +21,7 @@ import NewPost from "./Pages/DashboardPages/NewPost";
 // import SearchBar from "./Pages/SearchTest";
 import AddInfoProfile from "./Pages/DashboardPages/AddInfoProfile";
 import PrayerPage from "./Pages/PrayerPage";
+import RosaryPage from "./Components/Dashboard/RosaryPage";
 
 function App() {
   return (
@@ -43,6 +44,9 @@ function App() {
             <Route path="/prayers" element={<PrivateRoute />}>
               <Route path="/prayers" element={<PrayerPage />} />
             </Route>
+            <Route path="/prayers/rosary" element={<PrivateRoute />}>
+              <Route path="/prayers/rosary" element={<RosaryPage />} />
+            </Route>
             <Route
               path="/profile-page/add-profile-info"
               element={<PrivateRoute />}
@@ -54,7 +58,7 @@ function App() {
             </Route>
             <Route path="/" element={<Home />} />
 
-            <Route path="/read" element={<Read />} />
+            <Route path="/bible" element={<Read />} />
             {/* <Route path="/search" element={<Search />} /> */}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />

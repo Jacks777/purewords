@@ -3,4 +3,46 @@
   height: 100%;
   display: flex;
   justify-content: center;
+
+  color: var(--third);
+}
+
+.prayers_container_inner {
+  font-size: var(--fontSizeBigger);
+  width: 60%;
+}
+
+.prayers_container_title {
+  margin: 25px 0;
+  text-align: center;
+}
+
+.prayers_box_container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-bottom: 100px;
+}
+
+.prayers_box_option {
+  width: 40%;
+  height: 125px;
+  background-color: var(--secondHalf);
+  border-radius: 4px;
+  transition: 0.3s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--third);
+}
+
+.prayers_box_option:hover {
+  color: var(--primary);
+  background-color: var(--second);
+}
+
+.prayer_row {
+  display: flex;
+  justify-content: space-between;
 }
