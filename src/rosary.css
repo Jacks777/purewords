@@ -66,7 +66,8 @@
   height: 35px;
   border-radius: 8px;
 
-  background-color: var(--secondHalf);
+  background-color: var(--primary);
+  color: var(--third);
 }
 /* END COUNTER */
 
@@ -143,6 +144,8 @@
 }
 
 .rosary_help_button {
+  position: fixed;
+  display: none;
   z-index: 10;
   bottom: 10%;
   width: 125px;
@@ -150,18 +153,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondHalf);
-  color: var(--primary);
-  transform: translateX(0);
+  background-color: var(--primary);
+  color: var(--third);
+  transition: 0.6s all;
+  opacity: 0;
 }
 
-.rosary_help_next_button {
-  position: fixed;
-  right: 5%;
-}
-.rosary_help_back_button {
-  position: fixed;
+.rosary_active_back {
   left: 5%;
+  animation: appear 0.3s forwards;
+  animation-delay: 1s;
+}
+
+.rosary_active_next {
+  right: 5%;
+  animation: appear 0.3s forwards;
+  animation-delay: 1s;
+}
+
+@keyframes appear {
+  from {
+    display: none;
+    opacity: 0;
+  }
+  to {
+    display: flex;
+    opacity: 1;
+  }
 }
 
 .rosary_help_container_cross {
@@ -261,6 +279,7 @@
 .rosary_help_prayer {
   font-size: var(--fontSizeMedium);
   line-height: 2rem;
+  padding-bottom: 50px;
 }
 
 .fadeIn {

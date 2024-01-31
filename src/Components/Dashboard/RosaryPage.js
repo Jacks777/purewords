@@ -53,29 +53,37 @@ const RosaryPage = () => {
 
   return (
     <>
-      <div className="rosary_buttons">
-        <p
-          onClick={handlePreviousStep}
-          className="rosary_help_back_button rosary_help_button"
-        >
-          Back
-        </p>
-        {currentStep !== 75 ? (
+      {currentStep > 0 && (
+        <div className="rosary_buttons">
           <p
-            onClick={handleNextStep}
-            className="rosary_help_next_button rosary_help_button"
+            onClick={handlePreviousStep}
+            className={`${
+              currentStep > 0 && "rosary_active_back"
+            } rosary_help_button `}
           >
-            Next
+            Back
           </p>
-        ) : (
-          <p
-            onClick={handleStartRosaryHelp}
-            className="rosary_help_next_button rosary_help_button"
-          >
-            Close
-          </p>
-        )}
-      </div>
+          {currentStep !== 75 ? (
+            <p
+              onClick={handleNextStep}
+              className={`${
+                currentStep > 0 && "rosary_active_next"
+              } rosary_help_button`}
+            >
+              Next
+            </p>
+          ) : (
+            <p
+              onClick={handleStartRosaryHelp}
+              className={`${
+                currentStep > 0 && "rosary_active_next"
+              } rosary_help_button`}
+            >
+              Close
+            </p>
+          )}
+        </div>
+      )}
       <div className="rosary_container">
         <div className="rosary_landingPage">
           <h3 className="rosary_landingPage_title">Dear fellow Christian.</h3>
